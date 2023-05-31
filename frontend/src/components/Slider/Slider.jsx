@@ -9,9 +9,9 @@ function RecommendationSection({ recommendations }) {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    
-    // centerMode: true, // Active le mode centré
-    // centerPadding: '100px', // Ajoute un espacement entre les éléments
+
+    centerMode: true, // Active le mode centré
+    centerPadding: '100px', // Ajoute un espacement entre les éléments
   };
 
   return (
