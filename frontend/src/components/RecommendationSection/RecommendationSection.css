@@ -41,6 +41,20 @@
   padding: 0;
   position: relative;
   touch-action: pan-y;
+  align-items: center;
+}
+
+slider-container {
+  display: flex;
+  justify-content: space-between; /* Ajoute un espacement égal entre les éléments */
+  align-items: center; /* Centre les éléments verticalement */
+}
+
+.slick-prev, .slick-next {
+  color: red; /* Remplacez par la couleur souhaitée */
+  font-size: 24px;
+  background-color: gray; /* Remplacez par la couleur souhaitée */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajoutez une ombre si nécessaire */
 }
 
 .slider-container {
