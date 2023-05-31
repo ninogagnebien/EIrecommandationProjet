@@ -6,7 +6,7 @@ import { appDataSource } from '../datasource.js';
 router.get('/', function (req, res) {
   appDataSource
     .getRepository(Movie)
-    .find({})
+    .find({ relations: { genres: true } })
     .then(function (movies) {
       res.json({ movies: movies });
     });

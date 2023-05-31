@@ -1,10 +1,10 @@
-import './Users.css';
+import './Favoris.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AddUserForm from '../../components/AddUserForm/AddUserForm';
 import UsersTable from '../../components/UsersTable/UsersTable';
 
-function Users() {
+function Favoris() {
   const [users, setUsers] = useState([]);
   const [usersLoadingError, setUsersLoadingError] = useState(null);
 
@@ -39,4 +39,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Favoris;

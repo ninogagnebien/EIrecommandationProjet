@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import './RecommendationSection.css';
+import './Slider.css';
 
 function RecommendationSection({ recommendations }) {
   const settings = {
@@ -9,14 +9,13 @@ function RecommendationSection({ recommendations }) {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    
-    // centerMode: true, // Active le mode centré
-    // centerPadding: '100px', // Ajoute un espacement entre les éléments
+
+    centerMode: true, // Active le mode centré
+    centerPadding: '100px', // Ajoute un espacement entre les éléments
   };
 
   return (
     <div>
-      <h2>Recommandations de Films</h2>
       <Slider {...settings}>
         {recommendations.map((movie) => (
           <div className="slider-item" key={movie.title}>
@@ -28,7 +27,7 @@ function RecommendationSection({ recommendations }) {
                 }}
               >
                 <h3>{movie.title}</h3>
-                <p>Langue: {movie.goriginal_language}</p>
+                <p>Langue: {movie.original_language}</p>
                 <p>Note: {movie.vote_average}</p>
               </div>
             </div>
