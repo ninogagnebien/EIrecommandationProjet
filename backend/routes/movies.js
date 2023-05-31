@@ -21,6 +21,28 @@ router.get('/:movieId', function (req, res) {
     });
 });
 
+router.get('/popular', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .find({
+      take: 20,
+      order: { popularity: 'DESC' },
+      relations: { genres: true },
+    })
+    .then(function (movies) {
+      res.json({ movies });
+    });
+});
+
+// router.get('/:genreId', function (req, res) {
+//   appDataSource
+//     .getRepository(Movie)
+//     .find({ where: { genres.id : req.params.genreId }, relations: { genres: true } })
+//     .then(function (movie) {
+//       res.json({ movie });
+//     });
+// });
+
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const newMovie = movieRepository.create({
