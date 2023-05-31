@@ -7,7 +7,7 @@ import useFetchMovies from './useFetchMovies';
 import Movie from '../../components/Movie/Movie';
 import Carrousel from '../../components/Carrousel/Carrousel';
 import CategorySection from '../../components/Categories/CategorySection';
-import RecommendationSection from '../../components/RecommendationSection/RecommendationSection';
+// import RecommendationSection from '../../components/RecommendationSection/RecommendationSection';
 import Like from '../../components/Like/Like';
 import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 import Slider from '../../components/Slider/Slider';
@@ -63,7 +63,7 @@ function Home() {
         ))}
         <Carrousel movies={movies} />
         <CategorySection />
-        <RecommendationSection recommendations={movies} />
+        {/* <RecommendationSection recommendations={movies} /> */}
         <h2>Vos Recommendations</h2>
         <Slider recommendations={movies} />
         <h2>Nouveautés</h2>

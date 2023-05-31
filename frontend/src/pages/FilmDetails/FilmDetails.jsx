@@ -21,7 +21,23 @@ function FilmDetails() {
     fetchMovie();
   }, []);
 
-  return <div className="App">{movie?.title}</div>;
+  return (
+    <div className="App">
+      <div className="poster">
+        <img src={movie?.poster} alt={movie?.title} />
+      </div>
+      <div className="details">
+        <h1>{movie?.title}</h1>
+        <p>Langue originale : {movie?.original_language}</p>
+        <p>Résumé : {movie?.overview}</p>
+        <p>Popularité : {movie?.popularity}</p>
+      </div>
+    </div>
+  );
+
+  {
+    /* </div><div className="App">{movie?.title}</div>; */
+  }
 }
 
 export default FilmDetails;
