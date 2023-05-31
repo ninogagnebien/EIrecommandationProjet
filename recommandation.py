@@ -11,10 +11,7 @@ all_movies = [
     {
         "adult": False,
         "backdrop_path": "/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
-        "genre_ids": [
-            28,
-            53,
-            80
+        "genres": [{"id":28},{"id":53}
         ],
         "id": 603692,
         "original_language": "en",
@@ -31,12 +28,8 @@ all_movies = [
     {
         "adult": False,
         "backdrop_path": "/2klQ1z1fcHGgQPevbEQdkCnzyuS.jpg",
-        "genre_ids": [
-            16,
-            10751,
-            12,
-            14,
-            35
+        "genres": [{"id":16},{"id":10751},{"id":12},{"id":14}
+        
         ],
         "id": 502356,
         "original_language": "en",
@@ -53,10 +46,7 @@ all_movies = [
     {
         "adult": False,
         "backdrop_path": "/4t0oBFrJyweYPt0hocW6RUa0b6H.jpg",
-        "genre_ids": [
-            28,
-            80,
-            53
+        "genres": [{"id":28},{"id":53},{"id":80}
         ],
         "id": 385687,
         "original_language": "en",
@@ -94,12 +84,13 @@ def matrice_elements():
         # associe un film_id à son indice dans all_movies
         dico_film_id[all_movies[k]["id"]] = k
         for i in range(nb_genres):
-            if id_genres[i] in all_movies[k]["genre_ids"]:
+            if id_genres[i] in [all_movies[k]["genres"][l]["id"] for l in range(len(all_movies[k]["genres"]))]:
                 res[k, i] = 1
         ##res[k, nb_genres] = all_movies[k]["vote_average"]
     return (res, dico_film_id)
 
 # Vecteur associée à l'utilisateur : avec des notes (ou des films vus), mêmes colonnes que précédemment
+
 
 def vecteur_user(notes_user, matrice_element, dico_film_id):
     # note user qui contient la note de l'utilisateur clé i rang du film dans all_movies
@@ -117,6 +108,7 @@ def vecteur_user(notes_user, matrice_element, dico_film_id):
     return (res)
 
 # Calcul de la recommendation :
+
 
 def recommendation(vecteur_user, matrice_element):
     n = len(all_movies)
@@ -137,6 +129,7 @@ def recommendation(vecteur_user, matrice_element):
     return (recom)
 
 # coeur du code :
+
 
 matrice_films, dico_film_id = matrice_elements()
 vecteur = vecteur_user(movies_rated, matrice_films, dico_film_id)

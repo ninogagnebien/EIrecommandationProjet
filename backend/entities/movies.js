@@ -7,6 +7,10 @@ const Movie = new typeorm.EntitySchema({
       primary: true,
       type: Number,
     },
+    isLiked: {
+      type: Boolean,
+      nullable: true,
+    },
     release_date: {
       type: Date,
       nullable: true,

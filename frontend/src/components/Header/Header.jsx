@@ -8,16 +8,16 @@ const Header = () => {
         Home
       </Link>
       <div>|</div>
-      <Link className="Link" to="/counter">
-        Counter
+      <Link className="Link" to="/liste">
+        Ma liste
       </Link>
       <div>|</div>
-      <Link className="Link" to="/users">
-        Users
+      <Link className="Link" to="/categories">
+        Films par catégories
       </Link>
       <div>|</div>
-      <Link className="Link" to="/about">
-        About
+      <Link className="Link" to="/preferences">
+        Mes favoris
       </Link>
     </div>
   );
