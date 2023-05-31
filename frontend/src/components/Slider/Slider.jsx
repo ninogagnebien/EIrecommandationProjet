@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './Slider.css';
+import { Link } from 'react-router-dom';
 
 function RecommendationSection({ recommendations }) {
   const settings = {
@@ -19,22 +20,24 @@ function RecommendationSection({ recommendations }) {
       <Slider {...settings}>
         {recommendations.map((movie) => (
           <div className="slider-item" key={movie.title}>
-            <div className="slider-item-content">
-              <div
-                style={{
-                  backgroundImage: `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`,
-                  height: '100%',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  // margin: 3px
-                }}
-              >
-                {/* <h3>{movie.title}</h3>
-                <p>Langue: {movie.original_language}</p>
-                <p>Note: {movie.vote_average}</p> */}
+            <Link to={`/movie/${movie.id}`}>
+              <div className="slider-item-content">
+                <div
+                  style={{
+                    backgroundImage: `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`,
+                    height: '100%',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    // margin: 3px
+                  }}
+                >
+                  {/* <h3>{movie.title}</h3>
+                  <p>Langue: {movie.original_language}</p>
+                  <p>Note: {movie.vote_average}</p> */}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </Slider>
