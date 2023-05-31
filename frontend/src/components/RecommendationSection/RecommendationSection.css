@@ -14,13 +14,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px; /* Ajustez la largeur selon vos besoins */
+  width: 40px; /* Ajustez la largeur selon vos besoins */
   /* height: 750px; Ajustez la hauteur selon vos besoins */
-  aspect-ratio: 30/55;
-  margin: 0px 0px;
+  aspect-ratio: 30/45;
+  margin: 0px 10px;
 }
-
-.slider-container .slick-slide {
+ .slick-slide {
   margin: 0 10px; /* Ajustez la marge selon vos besoins */
 }
 
@@ -32,8 +31,23 @@
 }
 
 .slider {
+  /* display: flex; */
   margin: 0;
-  padding: 0 4%;
+  padding: 0;
   position: relative;
   touch-action: pan-y;
+  align-items: center;
+}
+
+slider-container {
+  display: flex;
+  justify-content: space-between; /* Ajoute un espacement égal entre les éléments */
+  align-items: center; /* Centre les éléments verticalement */
+}
+
+.slick-prev, .slick-next {
+  color: red; /* Remplacez par la couleur souhaitée */
+  font-size: 24px;
+  background-color: gray; /* Remplacez par la couleur souhaitée */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajoutez une ombre si nécessaire */
 }
