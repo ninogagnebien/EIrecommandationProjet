@@ -7,11 +7,11 @@ import useFetchMovies from './useFetchMovies';
 import Movie from '../../components/Movie/Movie';
 import Carrousel from '../../components/Carrousel/Carrousel';
 import CategorySection from '../../components/Categories/CategorySection';
-// import RecommendationSection from '../../components/RecommendationSection/RecommendationSection';
 import Like from '../../components/Like/Like';
 import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
@@ -39,7 +39,10 @@ function Home() {
             <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
             {/* Afficher les films filtrés */}
             {filteredMovies.map((movie) => (
-              <div key={movie.id}>{movie.title}</div>
+              <div key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>
+                  <h3>{movie.title}</h3>
+                </Link></div>
             ))}
           </div>
         </p>
@@ -63,7 +66,6 @@ function Home() {
         ))}
         <Carrousel movies={movies} />
         <CategorySection />
-        {/* <RecommendationSection recommendations={movies} /> */}
         <h2>Vos Recommendations</h2>
         <Slider recommendations={movies} />
         <h2>Nouveautés</h2>
