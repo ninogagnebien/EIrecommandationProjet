@@ -6,7 +6,7 @@ import { appDataSource } from '../datasource.js';
 router.get('/', function (req, res) {
   appDataSource
     .getRepository(Movie)
-    .find({})
+    .find({ relations: { genres: true } })
     .then(function (movies) {
       res.json({ movies: movies });
     });
@@ -37,15 +37,15 @@ router.post('/new', function (req, res) {
 });
 
 router.delete('/:movieId', function (req, res) {
-appDataSource
-.getRepository(Movie)
-.delete({ id: req.params.movieId })
-.then(function () {
-  res.status(204).json({ message: 'Movie successfully deleted' });
-})
-.catch(function () {
-  res.status(500).json({ message: 'Error while deleting the movie' });
-});
+  appDataSource
+    .getRepository(Movie)
+    .delete({ id: req.params.movieId })
+    .then(function () {
+      res.status(204).json({ message: 'Movie successfully deleted' });
+    })
+    .catch(function () {
+      res.status(500).json({ message: 'Error while deleting the movie' });
+    });
 });
 
 export default router;
