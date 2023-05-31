@@ -8,6 +8,8 @@ import Movie from '../../components/Movie/Movie';
 import Carrousel from '../../components/Carrousel/Carrousel';
 import CategorySection from '../../components/Categories/CategorySection';
 import RecommendationSection from '../../components/RecommendationSection/RecommendationSection';
+import Like from '../../components/Like/Like';
+import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
@@ -48,7 +50,7 @@ function Home() {
           <Movie movie={movie} />
         ))}
         <Carrousel movies={movies} />
-        <CategorySection /> 
+        <CategorySection />
         <RecommendationSection recommendations={movies} />
       </header>
     </div>
