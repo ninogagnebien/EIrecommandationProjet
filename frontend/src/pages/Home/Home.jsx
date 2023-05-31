@@ -8,26 +8,37 @@ import Movie from '../../components/Movie/Movie';
 import Carrousel from '../../components/Carrousel/Carrousel';
 import CategorySection from '../../components/Categories/CategorySection';
 import RecommendationSection from '../../components/RecommendationSection/RecommendationSection';
+import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
   const movies = useFetchMovies();
   const moviesNames = movies.map((movie) => movie.title);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  
+  const handleSearch = (searchValue) => {
+    // Filtrer les films en fonction de la valeur de recherche
+    const filteredMovies = movies.filter(movie =>
+      movie.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredMovies(filteredMovies);
+  };
+  const handleClear = () => {
+    setFilteredMovies([]); // Effacer la liste des films
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          recherche un film :
-          <input
-            className="Barre-recherche"
-            type="text"
-            placeholder="Rechercher"
-            value={movieName}
-            onChange={(event) => {
-              setMovieName(event.target.value);
-            }}
-          />
+          Rechercher un film :
+          <div>
+            <MovieSearchBar onSearch={handleSearch} onClear={handleClear}/>
+            {/* Afficher les films filtrés */}
+            {filteredMovies.map(movie => (
+              <div key={movie.id}>{movie.title}</div>
+            ))}
+          </div>
         </p>
         <h1>Voici les {movies.length} films les plus populaires</h1>
         {/* {moviesNames.map((titre)=>(<li>{titre}</li>))} */}
