@@ -45,6 +45,8 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import Like from '../Like/Like';
+import CarrouselItem from './CarrousselItem';
 
 function Carrousel({ movies }) {
   const [indexCourant, setIndexCourant] = useState(0);
@@ -73,14 +75,10 @@ function Carrousel({ movies }) {
         <button onClick={afficherFilmPrecedent}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
-        <div className="afficheTitre">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${filmCourant.poster_path}`}
-            alt={filmCourant.title}
-            className="afficheFilm"
-          />
-          <h4>{filmCourant.title}</h4>
-        </div>
+        <CarrouselItem
+          posterPath={filmCourant.poster_path}
+          title={filmCourant.title}
+        />
         <button onClick={afficherFilmSuivant}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
