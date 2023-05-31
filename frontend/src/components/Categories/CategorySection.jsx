@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CategorySection() {
-  const categories = ['Action', 'Comédie', 'Drame', 'Science-fiction', 'Thriller'];
+const categories = ["Action","Aventure","Animation","Comedy","Crime","Documentary","Drama","Family","Fantasy","History","Horror", "Music","Mystery", "Romance", "Science-Fiction","TV movie", "Thriller", "War","Western"];
 
   return (
     <div>
@@ -9,7 +10,9 @@ function CategorySection() {
       <div className="categories">
         {categories.map(category => (
           <div key={category} className="category">
+            <Link to={`/category/${category}`}>
             <h3>{category}</h3>
+                </Link>
             {/* Ajoutez ici le contenu spécifique à chaque catégorie */}
           </div>
         ))}

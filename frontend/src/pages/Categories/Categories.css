@@ -3,3 +3,68 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Barre-recherche {
+  margin-left: 10px;
+}
+
+table {
+  width: 80%;
+  border-color: aliceblue;
+  border-collapse: collapse;
+  border : 1px solid;
+  align-self: center;
+}
+
+td:nth-child(1){
+  width: 15%;
+}
+
+td:nth-child(2){
+  width: 50%;
+}
+
+td:nth-child(3){
+  width: 30%;
+}
+
+td {
+  border: 1px solid;
+  border-color: aliceblue;
+}
