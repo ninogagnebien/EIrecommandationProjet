@@ -7,7 +7,7 @@ function RecommendationSection({ recommendations }) {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
 
     centerMode: true, // Active le mode centré
@@ -24,11 +24,15 @@ function RecommendationSection({ recommendations }) {
                 style={{
                   backgroundImage: `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`,
                   height: '100%',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  // margin: 3px
                 }}
               >
-                <h3>{movie.title}</h3>
+                {/* <h3>{movie.title}</h3>
                 <p>Langue: {movie.original_language}</p>
-                <p>Note: {movie.vote_average}</p>
+                <p>Note: {movie.vote_average}</p> */}
               </div>
             </div>
           </div>
