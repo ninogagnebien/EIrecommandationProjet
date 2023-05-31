@@ -12,6 +12,15 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/:movieId', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .findOne({ where: { id: req.params.movieId }, relations: { genres: true } })
+    .then(function (movie) {
+      res.json({ movie });
+    });
+});
+
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const newMovie = movieRepository.create({
