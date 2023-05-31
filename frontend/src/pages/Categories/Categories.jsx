@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './Counter.css';
+import './Categories.css';
 
-function Counter() {
+function Categories() {
   const [counter, setCounter] = useState(0);
 
   return (
@@ -13,4 +13,4 @@ function Counter() {
   );
 }
 
-export default Counter;
+export default Categories;
