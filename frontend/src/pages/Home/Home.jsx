@@ -11,23 +11,24 @@ import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
-  const movies = useFetchMovies();
+  const [movies, setMovies] = useState([]);
   const [top10, setTop10] = useState([]);
   const [favoris, setFavoris] = useState([]);
   const [maliste, setMaliste] = useState([]);
   const moviesNames = movies.map((movie) => movie.title);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-  const handleSearch = (searchValue) => {
-    // Filtrer les films en fonction de la valeur de recherche
-    const filteredMovies = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setFilteredMovies(filteredMovies);
-  };
-  const handleClear = () => {
-    setFilteredMovies([]); // Effacer la liste des films
-  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/`)
+      .then((response) => {
+        setMovies(response.data.movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/movies/top10`)
@@ -59,6 +60,17 @@ function Home() {
         console.error(error);
       });
   }, []);
+
+  const handleSearch = (searchValue) => {
+    // Filtrer les films en fonction de la valeur de recherche
+    const filteredMovies = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredMovies(filteredMovies);
+  };
+  const handleClear = () => {
+    setFilteredMovies([]); // Effacer la liste des films
+  };
 
   console.log(maliste);
 
