@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import './FilmDetails.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import RatingStars from 'react-rating-stars-component';
 import { FiHeart } from 'react-icons/fi';
 import { FiPlus } from 'react-icons/fi';
+import './FilmDetails.css';
 
 function FilmDetails() {
   const params = useParams();
