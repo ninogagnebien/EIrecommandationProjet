@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
-import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/components/Header/MovieMatch.png';
+import MovieMatch from './MovieMatch.png';
 
 const Header = () => {
   return (

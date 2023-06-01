@@ -40,6 +40,15 @@ def algo():
     matrice_films, dico_film_id = matrice_elements(all_movies)
     vecteur = vecteur_user(movies_rated, matrice_films, dico_film_id)
     recom = recommendation(vecteur, matrice_films, all_movies)
+    for i, movie in enumerate(recom):
+        if i >= 30:
+            break
+        movieId = movie[1]
+        print(movieId)
+        cur.execute(
+            "INSERT INTO user_recommandations_movie VALUES (1, ?)", (movieId,))
+        con.commit()
+        # on isert les 30 films le plus recommandés pour l'utilisateur dans la base relationnelle user_recommandations_movie
     return (recom)  # update la table
 
 # Matrice associée aux films, leurs caractéristiques : film en ligne, caractéristiques en colonne
@@ -98,3 +107,6 @@ def recommendation(vecteur_user, matrice_element, all_movies):
         recom = [(res[i], all_movies[i][0]) for i in range(n)]
     recom.sort(reverse=True)
     return (recom)
+
+
+algo()
