@@ -4,6 +4,8 @@
 
 .rating{
     text-align: center;
+    margin-left: 0px;
+    margin-bottom: 50px;
 }
 
 
@@ -25,4 +27,22 @@ padding: 20px;
     margin-right: 100px;
     text-align: justify;
     margin-left: 100px;
+}
+
+.container {
+    margin-top: 40px;
+    display: flex;
+    align-items: center; /* Alignement vertical des éléments */
+    }
+.boutoncoeur{
+    margin-right: 20px;
+}
+
+.boutonplus{
+    margin-right: 20px;
+    align-items: center
+}
+
+.boutonrate{
+    text-align: center;
 }

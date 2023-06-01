@@ -5,8 +5,9 @@ import Layout from './components/Layout/Layout';
 // import Counter from './pages/Counter/Counter';
 // import Users from './pages/Users/Users';
 import FilmDetails from './pages/FilmDetails/FilmDetails';
-import Categories from './pages/Categories/Categories';
+import CategoryMovie from './pages/Categories/Categories';
 import Favoris from './pages/Favoris/Favoris';
+import CategoriesSection from './pages/CategoriesSection/CategoriesSection';
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
         <Route path="about" element={<About />} /> */}
         <Route path="movie/:id" element={<FilmDetails />} />
         <Route path="liste" element={<Liste />} />
-        <Route path="categories" element={<Categories />} />
+        <Route path="categories" element={<CategoriesSection />} />
         <Route path="preferences" element={<Favoris />} />
-        <Route path="genre/:categorie" element={<Categories />} />
+        <Route path="category/:category" element={<CategoryMovie/>} />
       </Routes>
     </Layout>
   );
