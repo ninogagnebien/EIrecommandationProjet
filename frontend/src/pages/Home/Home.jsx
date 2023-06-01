@@ -1,21 +1,20 @@
-import logo from './logo.svg';
 import './Home.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import useFetchMovies from './useFetchMovies';
-import Movie from '../../components/Movie/Movie';
-import Carrousel from '../../components/Carrousel/Carrousel';
+
 import CategorySection from '../../components/Categories/CategorySection';
-import Like from '../../components/Like/Like';
-import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
-import { Link } from 'react-router-dom';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
   const movies = useFetchMovies();
+  const [top10, setTop10] = useState([]);
+  const [favoris, setFavoris] = useState([]);
+  const [maliste, setMaliste] = useState([]);
   const moviesNames = movies.map((movie) => movie.title);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -29,6 +28,39 @@ function Home() {
   const handleClear = () => {
     setFilteredMovies([]); // Effacer la liste des films
   };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/top10`)
+      .then((response) => {
+        setTop10(response.data.movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/favoris`)
+      .then((response) => {
+        setFavoris(response.data.user.favoris);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/maliste`)
+      .then((response) => {
+        setMaliste(response.data.user.liste);
+        console.log(response.data.user.liste);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  console.log(maliste);
 
   return (
     <div className="App">
@@ -46,12 +78,13 @@ function Home() {
         ))}
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
-        <div className="titresection">Vos Recommendations</div>
-        <Slider recommendations={movies} />
-        <div className="titresection">Nouveautés</div>
-        <Slider recommendations={movies} />
+        <div className="titresection">Mes films favoris</div>
+        <Slider recommendations={favoris} />
+        <div className="titresection">Ma liste de films à regarder</div>
+        <Slider recommendations={favoris} />
+        {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
-        <Slider recommendations={movies} />
+        <Slider recommendations={top10} />
         <CategorySection />
       </div>
     </div>
@@ -59,27 +92,3 @@ function Home() {
 }
 
 export default Home;
-
-// afficher tableau de films :
-{
-  /* <h1>Voici les {movies.length} films les plus populaires</h1>
-        {/* {moviesNames.map((titre)=>(<li>{titre}</li>))} */
-}
-// <table>
-//   <tr>
-//     <td>
-//       <h4>Affiche</h4>
-//     </td>
-//     <td>
-//       <h3>Titre</h3>
-//     </td>
-//     <td>
-//       <h3>Date de sortie</h3>
-//     </td>
-//   </tr>
-// </table>
-// {movies.map((movie) => (
-//   <Movie movie={movie} />
-// ))} */}
-
-//        <Carrousel movies={movies} />

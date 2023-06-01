@@ -1,7 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import { getRepository } from 'typeorm';
+import { getRepository, Not } from 'typeorm';
+import { IsNull } from 'typeorm';
 import Movie from '../entities/movies.js';
+import User from '../entities/user.js';
 import { appDataSource } from '../datasource.js';
 
 router.get('/', function (req, res) {
@@ -26,21 +28,62 @@ router.get('/popular', function (req, res) {
     });
 });
 
+router.get('/top10', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .find({
+      take: 10,
+      order: { popularity: 'DESC' },
+      relations: { genres: true },
+    })
+    .then(function (movies) {
+      res.json({ movies });
+    });
+});
+
+router.get('/new', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .find({
+      where: { release_date: Not(IsNull()) },
+      take: 20,
+      order: { release_date: 'DESC' },
+      relations: { genres: true },
+    })
+    .then(function (movies) {
+      res.json({ movies });
+    });
+});
+
 router.get('/categories/:genreId', function (req, res) {
   appDataSource
     .getRepository(Movie)
     .find({
-      join: { alias: 'movies', innerJoin: { genres: 'movies.genres' } },
-      where: (qb) => {
-        qb.where(
-          // Filter Role fields
-          'genres.id = :genreId',
-          { genreId: req.params.genreId }
-        );
+      relations: ['genres'],
+      where: {
+        genres: { id: req.params.genreId },
       },
     })
     .then(function (movie) {
       res.json({ movie });
+    });
+});
+
+router.get('/favoris', function (req, res) {
+  appDataSource
+    .getRepository(User)
+    .findOne({ where: { id: 1 }, relations: { favoris: true } })
+    .then(function (user) {
+      res.json({ user });
+    });
+});
+
+router.get('/maliste', function (req, res) {
+  appDataSource
+    .getRepository(User)
+    .findOne({ where: { id: 1 }, relations: { liste: true } })
+    .then(function (user) {
+      res.json({ user });
     });
 });
 

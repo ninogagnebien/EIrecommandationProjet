@@ -17,7 +17,13 @@ const User = new typeorm.EntitySchema({
   },
 
   relations: {
-    genres: {
+    favoris: {
+      type: 'many-to-many',
+      target: 'Movie', // CategoryEntity
+      joinTable: true,
+      cascade: true,
+    },
+    liste: {
       type: 'many-to-many',
       target: 'Movie', // CategoryEntity
       joinTable: true,
