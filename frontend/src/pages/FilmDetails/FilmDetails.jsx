@@ -45,7 +45,7 @@ function FilmDetails() {
       </div>
       </div>
       <div className="container">
-      <div>
+      <div className='boutoncoeur'>
         <button className={`round-button ${isClicked1 ? 'clicked' : ''}`}
             onClick={() => setIsClicked1(!isClicked1)}
             style={{
@@ -63,7 +63,7 @@ function FilmDetails() {
         </button>
         <p>Favoris</p>
         </div>
-        <div>
+        <div className='boutonplus'>
         <button className={`round-button ${isClicked ? 'clicked' : ''}`}
             onClick={() => setIsClicked(!isClicked)}
             style={{
@@ -81,7 +81,7 @@ function FilmDetails() {
         </button>
         <p> Ma liste</p>
         </div>
-        <div>
+        <div className='boutonrate'>
         <div className='rating'>
           <RatingStars
             count={5} // Nombre d'étoiles à afficher
@@ -91,7 +91,6 @@ function FilmDetails() {
             activeColor="#ffd700" // Couleur des étoiles sélectionnées
           />
         </div>
-        <p>Note</p>
         </div>
         </div>
     </div>
