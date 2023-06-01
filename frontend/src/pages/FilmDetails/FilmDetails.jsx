@@ -21,13 +21,14 @@ function FilmDetails() {
       })
       .catch((error) => {
         console.error(error);
-      }); 
+      });
   };
   useEffect(() => {
     fetchMovie();
   }, []);
 
   return (
+
     <div className="App">
       <div className="poster"
         >
@@ -95,10 +96,6 @@ function FilmDetails() {
         </div>
     </div>
   );
-
-  {
-    /* </div><div className="App">{movie?.title}</div>; */
-  }
 }
 
 export default FilmDetails;

@@ -1,24 +1,69 @@
-import logo from './logo.svg';
 import './Home.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import useFetchMovies from './useFetchMovies';
-import Movie from '../../components/Movie/Movie';
-import Carrousel from '../../components/Carrousel/Carrousel';
+
 import CategorySection from '../../components/Categories/CategorySection';
-import Like from '../../components/Like/Like';
-import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
+
 import { Link } from 'react-router-dom';
 import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/pages/Home/MovieMatch.png';
 
+
 function Home() {
   const [movieName, setMovieName] = useState('');
-  const movies = useFetchMovies();
+  const [movies, setMovies] = useState([]);
+  const [top10, setTop10] = useState([]);
+  const [favoris, setFavoris] = useState([]);
+  const [maliste, setMaliste] = useState([]);
   const moviesNames = movies.map((movie) => movie.title);
   const [filteredMovies, setFilteredMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/`)
+      .then((response) => {
+        setMovies(response.data.movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/top10`)
+      .then((response) => {
+        setTop10(response.data.movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/favoris`)
+      .then((response) => {
+        setFavoris(response.data.user.favoris);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/maliste`)
+      .then((response) => {
+        setMaliste(response.data.user.liste);
+        console.log(response.data.user.liste);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSearch = (searchValue) => {
     // Filtrer les films en fonction de la valeur de recherche
@@ -31,28 +76,33 @@ function Home() {
     setFilteredMovies([]); // Effacer la liste des films
   };
 
+  console.log(maliste);
+
   return (
     <div className="App">
       <div className="Appheader">
         {/* <p className='Recherchertexte'>
           Rechercher un film : */}
-            <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
-            {/* Afficher les films filtrés */}
-            {filteredMovies.map((movie) => (
-              <div key={movie.id} >
-                <Link to={`/movie/${movie.id}`} className='resultatsRecherche'>
-                  <h3>{movie.title}</h3>
-                </Link></div>
-            ))}
+        <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
+        {/* Afficher les films filtrés */}
+        {filteredMovies.map((movie) => (
+          <div key={movie.id}>
+            <Link to={`/movie/${movie.id}`} className="resultatsRecherche">
+              <h3>{movie.title}</h3>
+            </Link>
+          </div>
+        ))}
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
+
         <img src={MovieMatch} className="logo2"/>
-        <div className='titresection'>Vos Recommendations</div>
-        <Slider recommendations={movies} />
-        <div className='titresection'>Nouveautés</div>
-        <Slider recommendations={movies} />
-        <div className='titresection'>Top 10</div>
-        <Slider recommendations={movies} />
+        <div className="titresection">Mes films favoris</div>
+        <Slider recommendations={favoris} />
+        <div className="titresection">Ma liste de films à regarder</div>
+        <Slider recommendations={favoris} />
+        {/* <Slider recommendations={maliste} /> */}
+        <div className="titresection">Top 10</div>
+
         <CategorySection />
       </div>
     </div>
@@ -60,27 +110,3 @@ function Home() {
 }
 
 export default Home;
-
-// afficher tableau de films :
-{
-  /* <h1>Voici les {movies.length} films les plus populaires</h1>
-        {/* {moviesNames.map((titre)=>(<li>{titre}</li>))} */
-}
-// <table>
-//   <tr>
-//     <td>
-//       <h4>Affiche</h4>
-//     </td>
-//     <td>
-//       <h3>Titre</h3>
-//     </td>
-//     <td>
-//       <h3>Date de sortie</h3>
-//     </td>
-//   </tr>
-// </table>
-// {movies.map((movie) => (
-//   <Movie movie={movie} />
-// ))} */}
-
-//        <Carrousel movies={movies} />

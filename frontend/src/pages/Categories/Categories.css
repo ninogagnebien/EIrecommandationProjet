@@ -48,23 +48,51 @@ table {
   width: 80%;
   border-color: aliceblue;
   border-collapse: collapse;
-  border : 1px solid;
+  border: 1px solid;
   align-self: center;
 }
 
-td:nth-child(1){
+td:nth-child(1) {
   width: 15%;
 }
 
-td:nth-child(2){
+td:nth-child(2) {
   width: 50%;
 }
 
-td:nth-child(3){
+td:nth-child(3) {
   width: 30%;
 }
 
 td {
   border: 1px solid;
   border-color: aliceblue;
+}
+
+.presentoire {
+  display: flex;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.movie-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-image:hover {
+  transform: scale(1.2);
+}
+
+.movie-item {
+  width: 20%; /* Set the width to 20% for 5 movies per row */
+  padding: 10px;
+  box-sizing: border-box;
 }
