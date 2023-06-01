@@ -4,6 +4,7 @@
 
 .rating{
     text-align: center;
+    margin-left: 40px;
 }
 
 
@@ -26,3 +27,9 @@ padding: 20px;
     text-align: justify;
     margin-left: 100px;
 }
+
+.container {
+    margin-top: 40px;
+    display: flex;
+    align-items: center; /* Alignement vertical des éléments */
+    }
