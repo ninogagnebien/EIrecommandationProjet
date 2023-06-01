@@ -12,7 +12,7 @@ con.commit()
 # En sortie on a une liste des (score,film_id) triés par pertinence
 
 # exemple ici avec 3 films
-all_movies = cur.execute("SELECT genre_ids FROM movie").fetchall()
+all_movies = cur.execute("SELECT id, genre_ids FROM movie").fetchall()
 
 print(all_movies)
 movies_rated = [(603692, 5), (385687, 2), (502356, 1)]
@@ -37,9 +37,9 @@ def matrice_elements():
     res = np.zeros((n, nb_genres))  # +1
     for k in range(n):
         # associe un film_id à son indice dans all_movies
-        dico_film_id[all_movies[k]["id"]] = k
+        dico_film_id[all_movies[k][0]] = k
         for i in range(nb_genres):
-            if id_genres[i] in [all_movies[k]["genres"][l]["id"] for l in range(len(all_movies[k]["genres"]))]:
+            if id_genres[i] in [(all_movies[k][1]).split(',')[l] for l in range(len((all_movies[k][1]).split(',')))]:
                 res[k, i] = 1
         ##res[k, nb_genres] = all_movies[k]["vote_average"]
     return (res, dico_film_id)
@@ -79,7 +79,7 @@ def recommendation(vecteur_user, matrice_element):
         else:
             res[i] = 0
         #(pairwise_distances( x, y, metric="cosine"), all_movies[i]["id"])
-        recom = [(res[i], all_movies[i]["id"]) for i in range(n)]
+        recom = [(res[i], all_movies[i][0]) for i in range(n)]
     recom.sort(reverse=True)
     return (recom)
 
