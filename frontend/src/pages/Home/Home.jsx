@@ -12,7 +12,7 @@ import CarrouselItem from '../../components/Carrousel/CarrousselItem';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 import { Link } from 'react-router-dom';
-
+import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/pages/Home/MovieMatch.png';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
@@ -46,6 +46,7 @@ function Home() {
             ))}
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
+        <img src={MovieMatch} className="logo2"/>
         <div className='titresection'>Vos Recommendations</div>
         <Slider recommendations={movies} />
         <div className='titresection'>Nouveautés</div>
