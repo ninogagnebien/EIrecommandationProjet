@@ -1,5 +1,6 @@
 import express from 'express';
 const router = express.Router();
+import { getRepository } from 'typeorm';
 import Movie from '../entities/movies.js';
 import { appDataSource } from '../datasource.js';
 
@@ -25,17 +26,38 @@ router.get('/popular', function (req, res) {
     });
 });
 
-// router.get('/categories/:genreId', function (req, res) {
-//   appDataSource
-//     .getRepository(Movie)
-//     .find({ 
-//       join: { alias:'genres', innerJoin:}
-      
-      
-//       where: { genre : req.params.genreId }, relations: { genres: true } })
-//     .then(function (movie) {
-//       res.json({ movie });
-//     });
+router.get('/categories/:genreId', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .find({
+      join: { alias: 'movies', innerJoin: { genres: 'movies.genres' } },
+      where: (qb) => {
+        qb.where(
+          // Filter Role fields
+          'genres.id = :genreId',
+          { genreId: req.params.genreId }
+        );
+      },
+    })
+    .then(function (movie) {
+      res.json({ movie });
+    });
+});
+
+// router.get('/categories/:genreId', async function (req, res) {
+//   try {
+//     appDataSource.getRepository(Movie);
+//     const movies = await movieRepository
+//       .createQueryBuilder('movie')
+//       .leftJoinAndSelect('movie.genres', 'genre')
+//       .where('genre.id = :genreId', { genreId: req.params.genreId })
+//       .getMany();
+
+//     res.json({ movies });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
 // });
 
 router.post('/new', function (req, res) {

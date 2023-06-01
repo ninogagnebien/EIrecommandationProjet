@@ -1,65 +1,19 @@
 #from sklearn.metrics.pairwise import pairwise_distances
 import numpy as np
-
+import sqlite3
+con = sqlite3.connect(
+    "C:/Users/ninog/EIrecommandation/centrale-ei-web/backend/database.sqlite3")
+cur = con.cursor()
+con.commit()
 
 # On suppose disposer de la liste des films notés par l'utilisateur [(film_id,rating)] movies_rated
 # On a la liste de tous les films de la plateforme all_movies (id, genres,avg_rate)
 # En sortie on a une liste des (score,film_id) triés par pertinence
 
 # exemple ici avec 3 films
-all_movies = [
-    {
-        "adult": False,
-        "backdrop_path": "/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
-        "genres": [{"id":28},{"id":53}
-        ],
-        "id": 603692,
-        "original_language": "en",
-        "original_title": "John Wick: Chapter 4",
-        "overview": "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
-        "popularity": 8361.829,
-        "poster_path": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
-        "release_date": "2023-03-22",
-        "title": "John Wick: Chapter 4",
-        "video": False,
-        "vote_average": 8,
-        "vote_count": 2263
-    },
-    {
-        "adult": False,
-        "backdrop_path": "/2klQ1z1fcHGgQPevbEQdkCnzyuS.jpg",
-        "genres": [{"id":16},{"id":10751},{"id":12},{"id":14}
-        
-        ],
-        "id": 502356,
-        "original_language": "en",
-        "original_title": "The Super Mario Bros. Movie",
-        "overview": "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-        "popularity": 5236.756,
-        "poster_path": "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-        "release_date": "2023-04-05",
-        "title": "The Super Mario Bros. Movie",
-        "video": False,
-        "vote_average": 2,
-        "vote_count": 3778
-    },
-    {
-        "adult": False,
-        "backdrop_path": "/4t0oBFrJyweYPt0hocW6RUa0b6H.jpg",
-        "genres": [{"id":28},{"id":53},{"id":80}
-        ],
-        "id": 385687,
-        "original_language": "en",
-        "original_title": "Fast X",
-        "overview": "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.",
-        "popularity": 3879.447,
-        "poster_path": "/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
-        "release_date": "2023-05-17",
-        "title": "Fast X",
-        "video": False,
-        "vote_average": 7.1,
-        "vote_count": 607
-    }]
+all_movies = cur.execute("SELECT * FROM movie")
+
+print(all_movies.fetchall())
 movies_rated = [(603692, 5), (385687, 2), (502356, 1)]
 ratings = [4, 6, 1, 2]
 
