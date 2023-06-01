@@ -13,6 +13,7 @@ import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 import { Link } from 'react-router-dom';
 
+
 function Home() {
   const [movieName, setMovieName] = useState('');
   const movies = useFetchMovies();
@@ -43,6 +44,7 @@ function Home() {
                   <h3>{movie.title}</h3>
                 </Link></div>
             ))}
+        {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
         <div className='titresection'>Vos Recommendations</div>
         <Slider recommendations={movies} />

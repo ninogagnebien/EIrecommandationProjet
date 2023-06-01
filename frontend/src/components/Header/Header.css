@@ -7,7 +7,9 @@
 }
 
 .Header-container > :not(:last-child) {
-  margin-right: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  font-family: sans-serif;
 }
 
 .Link {
@@ -15,4 +17,5 @@
   color: white;
   text-decoration: none;
   font-family: sans-serif;
+  margin-top: 20px;
 }
