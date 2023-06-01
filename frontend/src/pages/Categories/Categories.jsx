@@ -10,7 +10,7 @@ function CategoryMovies() {
 
   // const fetchMovie = () => {
   //   axios
-  //     //.get(`http://localhost:8000/genres/${params.category}`) INSERER COMMANDE POUR RECUPERER LES FILMS D UN GENRE
+  //     //.get(`http://localhost:8000/genres/${params.id}`) INSERER COMMANDE POUR RECUPERER LES FILMS D UN GENRE
   //     .then((response) => {
   //       setMovies(response.data.movie);
   //     })
