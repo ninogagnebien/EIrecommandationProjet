@@ -12,15 +12,6 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/:movieId', function (req, res) {
-  appDataSource
-    .getRepository(Movie)
-    .findOne({ where: { id: req.params.movieId }, relations: { genres: true } })
-    .then(function (movie) {
-      res.json({ movie });
-    });
-});
-
 router.get('/popular', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -34,10 +25,14 @@ router.get('/popular', function (req, res) {
     });
 });
 
-// router.get('/:genreId', function (req, res) {
+// router.get('/categories/:genreId', function (req, res) {
 //   appDataSource
 //     .getRepository(Movie)
-//     .find({ where: { genres.id : req.params.genreId }, relations: { genres: true } })
+//     .find({ 
+//       join: { alias:'genres', innerJoin:}
+      
+      
+//       where: { genre : req.params.genreId }, relations: { genres: true } })
 //     .then(function (movie) {
 //       res.json({ movie });
 //     });
@@ -76,6 +71,15 @@ router.delete('/:movieId', function (req, res) {
     })
     .catch(function () {
       res.status(500).json({ message: 'Error while deleting the movie' });
+    });
+});
+
+router.get('/:movieId', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .findOne({ where: { id: req.params.movieId }, relations: { genres: true } })
+    .then(function (movie) {
+      res.json({ movie });
     });
 });
 
