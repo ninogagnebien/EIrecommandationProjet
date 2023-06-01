@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <div className="App">
-      <div className="App-header">
+      <div className="Appheader">
         {/* <p className='Recherchertexte'>
           Rechercher un film : */}
             <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
