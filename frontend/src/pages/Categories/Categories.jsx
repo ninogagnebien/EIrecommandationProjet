@@ -63,4 +63,4 @@ function CategoryMovies() {
   }
 }
 
-export default CategoryMovies
+export default CategoryMovies;

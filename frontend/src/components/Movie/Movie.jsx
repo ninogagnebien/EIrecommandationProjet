@@ -28,22 +28,21 @@ function Movie({ movie }) {
     //   </tr>
     // </table>
     <table className="movieTable">
-  <tr>
-    <td>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-        className="afficheFilm"
-      />
-    </td>
-    <td>
-      <h3>{movie.title}</h3>
-    </td>
-    <td>
-      <h5>{movie.release_date}</h5>
-    </td>
-  </tr>
-</table>
-
+      <tr>
+        <td>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+            className="afficheFilm"
+          />
+        </td>
+        <td>
+          <h3>{movie.title}</h3>
+        </td>
+        <td>
+          <h5>{movie.release_date}</h5>
+        </td>
+      </tr>
+    </table>
   );
 }
 

@@ -17,7 +17,6 @@ const Header = () => {
         Mes favoris
       </Link>
     </div>
-    
   );
 };
 

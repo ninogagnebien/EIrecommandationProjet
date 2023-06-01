@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import './FilmDetails.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import React from 'react';
@@ -21,13 +20,14 @@ function FilmDetails() {
       })
       .catch((error) => {
         console.error(error);
-      }); 
+      });
   };
   useEffect(() => {
     fetchMovie();
   }, []);
 
   return (
+
     <div className="App">
       <div className="poster"
         >
@@ -95,10 +95,6 @@ function FilmDetails() {
         </div>
     </div>
   );
-
-  {
-    /* </div><div className="App">{movie?.title}</div>; */
-  }
 }
 
 export default FilmDetails;
