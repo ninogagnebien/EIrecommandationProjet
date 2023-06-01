@@ -2,7 +2,8 @@
 import numpy as np
 import sqlite3
 con = sqlite3.connect(
-    "C:/Users/ninog/EIrecommandation/centrale-ei-web/backend/database.sqlite3")
+    "C:/Users/victo/EIrecommandationProjet/backend/database.sqlite3")
+
 cur = con.cursor()
 con.commit()
 
@@ -11,9 +12,9 @@ con.commit()
 # En sortie on a une liste des (score,film_id) triés par pertinence
 
 # exemple ici avec 3 films
-all_movies = cur.execute("SELECT * FROM movie")
+all_movies = cur.execute("SELECT genre_ids FROM movie").fetchall()
 
-print(all_movies.fetchall())
+print(all_movies)
 movies_rated = [(603692, 5), (385687, 2), (502356, 1)]
 ratings = [4, 6, 1, 2]
 
