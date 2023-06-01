@@ -29,6 +29,12 @@ const User = new typeorm.EntitySchema({
       joinTable: true,
       cascade: true,
     },
+    recommandations: {
+      type: 'many-to-many',
+      target: 'Movie', // CategoryEntity
+      joinTable: true,
+      cascade: true,
+    },
   },
 });
 
