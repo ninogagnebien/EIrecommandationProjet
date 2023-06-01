@@ -1,0 +1,11 @@
+.search-bar input[type="text"] {
+    border: none; /* Supprime la bordure par défaut */
+    border-radius: 20px; /* Ajoute un coin arrondi */
+    padding: 10px; /* Ajoute un espacement intérieur */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce */
+    margin-left: 40px;
+    margin-top: -2px;
+    height: 25px; /* Définit la hauteur de la barre de recherche */
+    width: 260px; /* Définit la largeur de la barre de recherche */
+
+  }

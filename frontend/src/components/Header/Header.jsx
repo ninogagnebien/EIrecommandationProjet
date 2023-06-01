@@ -7,19 +7,17 @@ const Header = () => {
       <Link className="Link" to="/">
         Home
       </Link>
-      <div>|</div>
       <Link className="Link" to="/liste">
         Ma liste
       </Link>
-      <div>|</div>
       <Link className="Link" to="/categories">
         Films par catégories
       </Link>
-      <div>|</div>
       <Link className="Link" to="/preferences">
         Mes favoris
       </Link>
     </div>
+    
   );
 };
 

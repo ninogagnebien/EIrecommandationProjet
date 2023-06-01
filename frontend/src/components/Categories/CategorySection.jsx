@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './CategorySection.css';
 
 function CategorySection() {
 const categories = ["Action","Aventure","Animation","Comedy","Crime","Documentary","Drama","Family","Fantasy","History","Horror", "Music","Mystery", "Romance", "Science-Fiction","TV movie", "Thriller", "War","Western"];
 
   return (
     <div>
-      <h2>Catégories de Films</h2>
+      <div className='Titre'>Films par catégories</div>
       <div className="categories">
         {categories.map(category => (
           <div key={category} className="category">
-            <Link to={`/category/${category}`}>
-            <h3>{category}</h3>
+            <Link to={`/category/${category}`} className="category-link">
+            {category}
                 </Link>
             {/* Ajoutez ici le contenu spécifique à chaque catégorie */}
           </div>
