@@ -1,0 +1,25 @@
+.category {
+    display: block;
+    margin-bottom: 10px; /* Facultatif : ajoute un espacement entre les éléments */
+  }
+
+  .categories {
+    columns: 4; /* Divise la liste en deux colonnes */
+    column-gap: 20px; /* Facultatif : ajoute un espacement horizontal entre les colonnes */
+  }
+
+  .Titre {
+    color: white; /* Change la couleur du texte en blanc */
+    text-decoration: none; /* Supprime le soulignement du lien */
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-size: 40px;
+  }
+  
+.category-link {
+color: white; /* Change la couleur du texte en blanc */
+text-decoration: none; /* Supprime le soulignement du lien */
+font-family: sans-serif;
+}
