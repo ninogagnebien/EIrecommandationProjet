@@ -79,7 +79,7 @@
 }
 
 .slider-item:hover .slider-item-content {
-  transform: scale(1.5);
+  transform: scale(1.3);
 }
 .slider {
   margin: 0;

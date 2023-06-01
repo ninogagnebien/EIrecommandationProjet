@@ -78,6 +78,20 @@ router.get('/favoris', function (req, res) {
     });
 });
 
+router.get('/recommandations', function (req, res) {
+  appDataSource
+    .getRepository(User)
+    .findOne({
+      where: { id: 1 },
+      relations: { recommandations: true },
+      take: 20,
+    })
+    .then(function (user) {
+      res.json({ user });
+    });
+});
+
+
 router.get('/maliste', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -86,22 +100,6 @@ router.get('/maliste', function (req, res) {
       res.json({ user });
     });
 });
-
-// router.get('/categories/:genreId', async function (req, res) {
-//   try {
-//     appDataSource.getRepository(Movie);
-//     const movies = await movieRepository
-//       .createQueryBuilder('movie')
-//       .leftJoinAndSelect('movie.genres', 'genre')
-//       .where('genre.id = :genreId', { genreId: req.params.genreId })
-//       .getMany();
-
-//     res.json({ movies });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
