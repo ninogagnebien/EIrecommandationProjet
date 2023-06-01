@@ -97,7 +97,7 @@ function Home() {
         <div className="titresection">Mes films favoris</div>
         <Slider recommendations={favoris} />
         <div className="titresection">Ma liste de films à regarder</div>
-        <Slider recommendations={favoris} />
+        <Slider recommendations={maliste} />
         {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
         <Slider recommendations={top10} />
