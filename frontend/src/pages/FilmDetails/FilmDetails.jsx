@@ -5,6 +5,7 @@ import React from 'react';
 import RatingStars from 'react-rating-stars-component';
 import { FiHeart } from 'react-icons/fi';
 import { FiPlus } from 'react-icons/fi';
+import './FilmDetails.css';
 
 function FilmDetails() {
   const params = useParams();
