@@ -33,7 +33,7 @@ function FilmDetails() {
         >
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
-          class="left-image"
+          className="left-image"
         />
 
       <div className="details">
@@ -82,7 +82,7 @@ function FilmDetails() {
         <p> Ma liste</p>
         </div>
         <div>
-        <p className='rating'>
+        <div className='rating'>
           <RatingStars
             count={5} // Nombre d'étoiles à afficher
             onChange={setRating} // Fonction de rappel appelée lorsque la note change
@@ -90,7 +90,7 @@ function FilmDetails() {
             size={30} // Taille des étoiles en pixels
             activeColor="#ffd700" // Couleur des étoiles sélectionnées
           />
-        </p>
+        </div>
         <p>Note</p>
         </div>
         </div>
