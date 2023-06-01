@@ -1,0 +1,30 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.poster {
+  width: 300px;
+  height: auto;
+}
+
+.details {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.movie-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.movie-release-date,
+.movie-user-rating {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
