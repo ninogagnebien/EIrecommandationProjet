@@ -1,0 +1,33 @@
+/* FilmDetails.css */
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .poster {
+    margin-bottom: 20px;
+  }
+  
+  .filmBack {
+    width: 1000px;
+    height: auto;
+  }
+  
+  .details {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 5px;
+  }
+  
+  
+  

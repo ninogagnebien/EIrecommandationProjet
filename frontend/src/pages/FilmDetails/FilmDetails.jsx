@@ -26,12 +26,13 @@ function FilmDetails() {
 
   return (
     <div className="App">
-      <div className="poster">
+      <div >
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
-          className="afficheFilm"
+          className="filmBack"
         />
       </div>
+
       <div className="details">
         <h1>{movie?.title}</h1>
         <p>Langue originale : {movie?.original_language}</p>
