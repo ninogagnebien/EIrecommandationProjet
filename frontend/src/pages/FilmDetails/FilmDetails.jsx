@@ -2,10 +2,13 @@ import { useParams } from 'react-router-dom';
 import './FilmDetails.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import React from 'react';
+import RatingStars from 'react-rating-stars-component';
 
 function FilmDetails() {
   const params = useParams();
   const [movie, setMovie] = useState({});
+  const [rating, setRating] = useState(0);
 
   const fetchMovie = () => {
     axios
@@ -31,6 +34,15 @@ function FilmDetails() {
         <p>Langue originale : {movie?.original_language}</p>
         <p>Résumé : {movie?.overview}</p>
         <p>Popularité : {movie?.popularity}</p>
+        <p>
+          <RatingStars
+            count={5} // Nombre d'étoiles à afficher
+            onChange={setRating} // Fonction de rappel appelée lorsque la note change
+            value={rating} // Valeur actuelle de la note
+            size={30} // Taille des étoiles en pixels
+            activeColor="#ffd700" // Couleur des étoiles sélectionnées
+          />
+        </p>
       </div>
     </div>
   );
