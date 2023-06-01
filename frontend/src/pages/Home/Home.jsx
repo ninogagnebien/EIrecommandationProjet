@@ -8,8 +8,6 @@ import useFetchMovies from './useFetchMovies';
 import CategorySection from '../../components/Categories/CategorySection';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
-
-import { Link } from 'react-router-dom';
 import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/pages/Home/MovieMatch.png';
 
 
@@ -102,7 +100,7 @@ function Home() {
         <Slider recommendations={favoris} />
         {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
-
+        <Slider recommendations={top10} />
         <CategorySection />
       </div>
     </div>
