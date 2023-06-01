@@ -9,6 +9,10 @@ import CategorySection from '../../components/Categories/CategorySection';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 
+import { Link } from 'react-router-dom';
+import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/pages/Home/MovieMatch.png';
+
+
 function Home() {
   const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
@@ -90,13 +94,15 @@ function Home() {
         ))}
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
+
+        <img src={MovieMatch} className="logo2"/>
         <div className="titresection">Mes films favoris</div>
         <Slider recommendations={favoris} />
         <div className="titresection">Ma liste de films à regarder</div>
         <Slider recommendations={favoris} />
         {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
-        <Slider recommendations={top10} />
+
         <CategorySection />
       </div>
     </div>

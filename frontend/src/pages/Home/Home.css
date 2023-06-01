@@ -91,3 +91,10 @@ td {
   margin-top: 60px;
 }
 
+.logo2 {
+  width: 90%;
+  height: auto;
+  margin: 40px auto 0;
+  /* display: block; */
+
+}
