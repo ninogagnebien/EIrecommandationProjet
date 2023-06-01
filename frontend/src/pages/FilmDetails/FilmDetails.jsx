@@ -18,7 +18,7 @@ function FilmDetails() {
       })
       .catch((error) => {
         console.error(error);
-      });
+      }); 
   };
   useEffect(() => {
     fetchMovie();
@@ -26,19 +26,22 @@ function FilmDetails() {
 
   return (
     <div className="App">
-      <div >
+      <div className="poster"
+        >
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
-          className="filmBack"
+          class="left-image"
         />
       </div>
-
       <div className="details">
         <h1>{movie?.title}</h1>
         <p>Langue originale : {movie?.original_language}</p>
-        <p>Résumé : {movie?.overview}</p>
         <p>Popularité : {movie?.popularity}</p>
-        <p>
+        <p className='resume'>Résumé : {movie?.overview}</p>
+        
+      </div>
+      </div>
+      <p className='rating'>
           <RatingStars
             count={5} // Nombre d'étoiles à afficher
             onChange={setRating} // Fonction de rappel appelée lorsque la note change
@@ -47,7 +50,6 @@ function FilmDetails() {
             activeColor="#ffd700" // Couleur des étoiles sélectionnées
           />
         </p>
-      </div>
     </div>
   );
 
