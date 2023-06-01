@@ -10,7 +10,7 @@ function CategoryMovies() {
 
   // const fetchMovie = () => {
   //   axios
-  //     //.get(`http://localhost:8000/genres/${params.category}`) INSERER COMMANDE POUR RECUPERER LES FILMS D UN GENRE
+  //     .get(`http://localhost:8000/genres/${params.category}`)
   //     .then((response) => {
   //       setMovies(response.data.movie);
   //     })
@@ -24,24 +24,24 @@ function CategoryMovies() {
 
   return (
     <div>
-    <h1>Voici les films du genre : {params.category}</h1>
-        <table>
-          <tr>
-            <td>
-              <h4>Affiche</h4>
-            </td>
-            <td>
-              <h3>Titre</h3>
-            </td>
-            <td>
-              <h3>Date de sortie</h3>
-            </td>
-          </tr>
-        </table>
-        {/* {movies.map((movie) => (
+      <h1>Voici les films du genre : {params.category}</h1>
+      <table>
+        <tr>
+          <td>
+            <h4>Affiche</h4>
+          </td>
+          <td>
+            <h3>Titre</h3>
+          </td>
+          <td>
+            <h3>Date de sortie</h3>
+          </td>
+        </tr>
+      </table>
+      {/* {movies.map((movie) => (
           <Movie movie={movie} />
         ))} */}
-        </div>
+    </div>
   );
 
   {
@@ -49,4 +49,4 @@ function CategoryMovies() {
   }
 }
 
-export default CategoryMovies
+export default CategoryMovies;

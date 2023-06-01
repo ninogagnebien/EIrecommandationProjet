@@ -20,7 +20,7 @@ function App() {
         <Route path="liste" element={<Liste />} />
         <Route path="categories" element={<Categories />} />
         <Route path="preferences" element={<Favoris />} />
-        <Route path="genre/:categorie" element={<Categories/>} />
+        <Route path="genre/:categorie" element={<Categories />} />
       </Routes>
     </Layout>
   );

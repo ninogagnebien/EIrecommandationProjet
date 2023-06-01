@@ -15,6 +15,15 @@ const User = new typeorm.EntitySchema({
     firstname: { type: String },
     lastname: { type: String },
   },
+
+  relations: {
+    genres: {
+      type: 'many-to-many',
+      target: 'Movie', // CategoryEntity
+      joinTable: true,
+      cascade: true,
+    },
+  },
 });
 
 export default User;

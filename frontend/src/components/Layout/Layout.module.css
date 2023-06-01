@@ -1,11 +1,12 @@
-.Layout-container {
+.LayoutContainer {
   background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   color: white;
+  overflow-x: hidden;
 }
 
-.Layout-content {
+.LayoutContent {
   padding: 20px;
 }

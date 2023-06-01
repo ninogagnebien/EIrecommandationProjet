@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MovieSearchBar.css';
 
-function MovieSearchBar({ onSearch, onClear,movies }) {
+function MovieSearchBar({ onSearch, onClear, movies }) {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchInputChange = (event) => {
@@ -26,21 +26,21 @@ function MovieSearchBar({ onSearch, onClear,movies }) {
     setFilteredMovies([]); // Effacer la liste des films
   };
 
-
   return (
     <span className="search-bar">
-    <input
-      type="text"
-      value={searchValue}
-      onChange={handleSearchInputChange}
-      placeholder="Rechercher un film..."
-    />
-    {filteredMovies.map((movie) => (
-      <div key={movie.id} >
-        <Link to={`/movie/${movie.id}`} className='resultatsRecherche'>
-          <h3>{movie.title}</h3>
-        </Link></div>
-    ))}
+      <input
+        type="text"
+        value={searchValue}
+        onChange={handleSearchInputChange}
+        placeholder="Rechercher un film..."
+      />
+      {filteredMovies.map((movie) => (
+        <div key={movie.id}>
+          <Link to={`/movie/${movie.id}`} className="resultatsRecherche">
+            <h3>{movie.title}</h3>
+          </Link>
+        </div>
+      ))}
     </span>
   );
 }

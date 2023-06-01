@@ -92,3 +92,6 @@
   overflow: visible !important;
 }
 
+.slick-prev {
+  z-index: 1;
+}

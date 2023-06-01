@@ -13,7 +13,6 @@ import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
 import { Link } from 'react-router-dom';
 
-
 function Home() {
   const [movieName, setMovieName] = useState('');
   const movies = useFetchMovies();
@@ -36,21 +35,22 @@ function Home() {
       <div className="Appheader">
         {/* <p className='Recherchertexte'>
           Rechercher un film : */}
-            <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
-            {/* Afficher les films filtrés */}
-            {filteredMovies.map((movie) => (
-              <div key={movie.id} >
-                <Link to={`/movie/${movie.id}`} className='resultatsRecherche'>
-                  <h3>{movie.title}</h3>
-                </Link></div>
-            ))}
+        <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
+        {/* Afficher les films filtrés */}
+        {filteredMovies.map((movie) => (
+          <div key={movie.id}>
+            <Link to={`/movie/${movie.id}`} className="resultatsRecherche">
+              <h3>{movie.title}</h3>
+            </Link>
+          </div>
+        ))}
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
-        <div className='titresection'>Vos Recommendations</div>
+        <div className="titresection">Vos Recommendations</div>
         <Slider recommendations={movies} />
-        <div className='titresection'>Nouveautés</div>
+        <div className="titresection">Nouveautés</div>
         <Slider recommendations={movies} />
-        <div className='titresection'>Top 10</div>
+        <div className="titresection">Top 10</div>
         <Slider recommendations={movies} />
         <CategorySection />
       </div>

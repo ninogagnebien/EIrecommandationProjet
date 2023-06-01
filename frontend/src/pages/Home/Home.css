@@ -14,7 +14,7 @@
 }
 
 .Appheader {
-  background-color:#000000;
+  background-color: #000000;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,19 +43,19 @@ table {
   width: 80%;
   border-color: aliceblue;
   border-collapse: collapse;
-  border : 1px solid;
+  border: 1px solid;
   align-self: center;
 }
 
-td:nth-child(1){
+td:nth-child(1) {
   width: 15%;
 }
 
-td:nth-child(2){
+td:nth-child(2) {
   width: 50%;
 }
 
-td:nth-child(3){
+td:nth-child(3) {
   width: 30%;
 }
 
@@ -64,7 +64,7 @@ td {
   border-color: aliceblue;
 }
 
-.titresection{
+.titresection {
   text-align: left;
   margin-left: 0px;
   margin-bottom: 20px;
@@ -74,7 +74,7 @@ td {
   font-size: larger;
 }
 
-.resultatsRecherche{
+.resultatsRecherche {
   margin-bottom: 10px;
   color: white;
   font-family: sans-serif;
@@ -82,7 +82,7 @@ td {
   text-decoration: none;
 }
 
-.Recherchertexte{
+.Recherchertexte {
   color: white;
   font-family: sans-serif;
   font-size: larger;
