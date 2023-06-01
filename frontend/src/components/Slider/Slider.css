@@ -83,7 +83,11 @@
 }
 .slider {
   margin: 0;
-  padding: 0 ;
+  padding: 0;
   position: relative;
   touch-action: pan-y;
+}
+
+.slick-list {
+  overflow: visible !important;
 }
