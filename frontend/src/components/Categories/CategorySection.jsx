@@ -7,7 +7,7 @@ const categories = ["Action","Aventure","Animation","Comedy","Crime","Documentar
 
   return (
     <div>
-      <div className="Titre">Films par catégories</div>
+      <div className="Titre">Films par genres</div>
       <div className="categories">
         {categories.map((category) => (
           <div key={category} className="category">
