@@ -6,6 +6,7 @@
 .categories {
   columns: 4; /* Divise la liste en deux colonnes */
   column-gap: 20px; /* Facultatif : ajoute un espacement horizontal entre les colonnes */
+  margin-bottom: 100px;
 }
 
 .Titre {
