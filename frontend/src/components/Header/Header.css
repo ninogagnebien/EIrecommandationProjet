@@ -8,7 +8,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 998;
+  background-color: black;
+  border-radius: 10px;
 }
 
 .Header-container > :not(:last-child) {
