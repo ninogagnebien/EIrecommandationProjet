@@ -13,6 +13,9 @@ function FilmDetails() {
   const [rating, setRating] = useState(0);
   const [isClicked1, setIsClicked1] = useState(false); //composant favoris
   const [isClicked, setIsClicked] = useState(false); //composant favoris
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isDansMaListe, setIsDansMaListe] = useState(false);
+
   const fetchMovie = () => {
     axios
       .get(`http://localhost:8000/movies/${params.id}`)
@@ -100,7 +103,7 @@ function FilmDetails() {
           <button
             className={`round-button ${isClicked ? 'clicked' : ''}`}
             onClick={() => {
-              setIsClicked1(!isClicked);
+              setIsClicked(!isClicked);
               handleAddToMaliste();
             }}
             style={{
