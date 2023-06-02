@@ -108,14 +108,14 @@ function Home() {
         {/* </p> */}
 
         <img src={MovieMatch} className="logo2" />
-        <div className="titresection">Mes recommandations</div>
+        <div className="titresection">Vos recommandations</div>
         <Slider recommendations={mesrecommandations} />
-        <div className="titresection">Ma liste de films à regarder</div>
+        <div className="titresection">Votre liste de films à regarder</div>
         <Slider recommendations={maliste} />
         {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
         <Slider recommendations={top10} />
-        <div className="titresection">Mes films favoris</div>
+        <div className="titresection">Vos films favoris</div>
         <Slider recommendations={favoris} />
         <CategorySection />
       </div>
