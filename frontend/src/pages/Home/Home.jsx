@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import useFetchMovies from './useFetchMovies';
-
 import CategorySection from '../../components/Categories/CategorySection';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
@@ -93,8 +91,7 @@ function Home() {
   return (
     <div className="App">
       <div className="Appheader">
-        {/* <p className='Recherchertexte'>
-          Rechercher un film : */}
+        {/*Rechercher un film : */}
         <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
         {/* Afficher les films filtrés */}
         {filteredMovies.map((movie) => (
@@ -112,7 +109,6 @@ function Home() {
         <Slider recommendations={mesrecommandations} />
         <div className="titresection">Votre liste de films à regarder</div>
         <Slider recommendations={maliste} />
-        {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
         <Slider recommendations={top10} />
         <div className="titresection">Vos films favoris</div>
