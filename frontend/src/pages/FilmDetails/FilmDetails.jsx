@@ -11,11 +11,11 @@ function FilmDetails() {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [rating, setRating] = useState(0);
-  // const [isClicked1, setIsClicked1] = useState(false); //composant favoris
-  // const [isClicked, setIsClicked] = useState(false); //composant favoris
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDansMaListe, setIsDansMaListe] = useState(false);
 
+
+  //récupère le film demandé
   const fetchMovie = () => {
     axios
       .get(`http://localhost:8000/movies/${params.id}`)
@@ -27,6 +27,7 @@ function FilmDetails() {
       });
   };
 
+  //vérifie si le film est favori
   const verifFavori = () => {
     axios
       .get(`http://localhost:8000/movies/favoris`)
@@ -42,6 +43,7 @@ function FilmDetails() {
       });
   };
 
+  //vérifie si le film est dans la liste des films à regarder
   const verifDansMaListe = () => {
     axios
       .get(`http://localhost:8000/movies/maliste`)
@@ -63,6 +65,7 @@ function FilmDetails() {
     verifDansMaListe();
   }, []);
 
+  //ajoute le film à la base de données des films favoris
   const handleAddToFavorites = () => {
     const movieId = params.id; // ID du film à ajouter aux favoris
     const userId = 1; // ID de l'utilisateur
@@ -78,6 +81,7 @@ function FilmDetails() {
       });
   };
 
+  //supprime le film de la base de données des favoris
   const handleRemoveFromFavorites = () => {
     const movieId = params.id; // ID du film à supprimer des favoris
 
@@ -92,6 +96,7 @@ function FilmDetails() {
       });
   };
 
+  //idem avec la base de données des films à regarder plus tard
   const handleAddToMaliste = () => {
     const movieId = params.id; // ID du film à ajouter aux favoris
     const userId = 1; // ID de l'utilisateur
@@ -121,7 +126,6 @@ function FilmDetails() {
       });
   };
 
-  console.log(isFavorite);
 
   return (
     <div className="App">
@@ -145,7 +149,7 @@ function FilmDetails() {
             className={`round-button ${isFavorite ? 'clicked' : ''}`}
             onClick={() => {
               if (isFavorite) {
-                handleRemoveFromFavorites(); // Supprime le film des favoris s'il est déjà présent
+                handleRemoveFromFavorites(); // Supprime le film des favoris s'il est déjà présent et que l'on appuie sur le bouton
               } else {
                 handleAddToFavorites(); // Ajoute le film aux favoris s'il n'est pas présent
               }
@@ -173,7 +177,7 @@ function FilmDetails() {
             className={`round-button ${isDansMaListe ? 'clicked' : ''}`}
             onClick={() => {
               if (isDansMaListe) {
-                handleRemoveFromMaliste(); // Supprime le film des favoris s'il est déjà présent
+                handleRemoveFromMaliste(); // Supprime le film de la liste des films à regarder s'il y est déjà et que l'on appuie sur le bouton
               } else {
                 handleAddToMaliste(); // Ajoute le film aux favoris s'il n'est pas présent
               }

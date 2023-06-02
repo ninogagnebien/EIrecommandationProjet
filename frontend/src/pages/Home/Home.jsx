@@ -13,6 +13,7 @@ import MovieMatch from './MovieMatch.png';
 function Home() {
   const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
+  const [nouveaute, setNouveaute] = useState([]);
   const [top10, setTop10] = useState([]);
   const [favoris, setFavoris] = useState([]);
   const [maliste, setMaliste] = useState([]);
@@ -36,6 +37,17 @@ function Home() {
       .get(`http://localhost:8000/movies/top10`)
       .then((response) => {
         setTop10(response.data.movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/new`)
+      .then((response) => {
+        setNouveaute(response.data.movies);
       })
       .catch((error) => {
         console.error(error);
@@ -93,8 +105,6 @@ function Home() {
   return (
     <div className="App">
       <div className="Appheader">
-        {/* <p className='Recherchertexte'>
-          Rechercher un film : */}
         <MovieSearchBar onSearch={handleSearch} onClear={handleClear} />
         {/* Afficher les films filtrés */}
         {filteredMovies.map((movie) => (
@@ -104,15 +114,14 @@ function Home() {
             </Link>
           </div>
         ))}
-        {/* <div><img src="./movie.png"/></div> */}
-        {/* </p> */}
 
         <img src={MovieMatch} className="logo2" />
         <div className="titresection">Vos recommandations</div>
         <Slider recommendations={mesrecommandations} />
+        <div className="titresection">Les nouveautés</div>
+        <Slider recommendations={nouveaute} />
         <div className="titresection">Votre liste de films à regarder</div>
         <Slider recommendations={maliste} />
-        {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
         <Slider recommendations={top10} />
         <div className="titresection">Vos films favoris</div>
