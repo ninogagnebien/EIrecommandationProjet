@@ -21,7 +21,7 @@ function Liste() {
 
   return (
     <div className="titre">
-      <h1>Les films de votre liste : </h1>
+      <h1>Votre liste de films à regarder : </h1>
 
       <div className="movies-container">
         {movies.map((movie, index) => (

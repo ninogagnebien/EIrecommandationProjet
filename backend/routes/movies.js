@@ -6,6 +6,7 @@ import Movie from '../entities/movies.js';
 import User from '../entities/user.js';
 import { appDataSource } from '../datasource.js';
 
+//donne tous les films
 router.get('/', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -15,6 +16,7 @@ router.get('/', function (req, res) {
     });
 });
 
+//donne les 20 films les plus populaires
 router.get('/popular', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -28,6 +30,7 @@ router.get('/popular', function (req, res) {
     });
 });
 
+//donne les 10 films les plus populaires
 router.get('/top10', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -41,6 +44,7 @@ router.get('/top10', function (req, res) {
     });
 });
 
+//donne les 20 films les plus récents
 router.get('/new', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -55,6 +59,7 @@ router.get('/new', function (req, res) {
     });
 });
 
+//donne les films d'un genre particulier
 router.get('/categories/:genreId', function (req, res) {
   appDataSource
     .getRepository(Movie)
@@ -69,6 +74,7 @@ router.get('/categories/:genreId', function (req, res) {
     });
 });
 
+//donne les films favoris
 router.get('/favoris', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -78,6 +84,7 @@ router.get('/favoris', function (req, res) {
     });
 });
 
+//donne les films recommandés
 router.get('/recommandations', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -91,6 +98,7 @@ router.get('/recommandations', function (req, res) {
     });
 });
 
+//donne les films de la liste à regarder plus tard
 router.get('/maliste', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -100,6 +108,7 @@ router.get('/maliste', function (req, res) {
     });
 });
 
+//ajoute un film dans la base de données
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const newMovie = movieRepository.create({
@@ -124,6 +133,7 @@ router.post('/new', function (req, res) {
     });
 });
 
+//ajoute un film à la liste
 router.post('/ajout/maliste/:movieId', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const userRepository = appDataSource.getRepository(User);
@@ -174,6 +184,7 @@ router.post('/ajout/maliste/:movieId', function (req, res) {
     });
 });
 
+//supprime un film de la liste à regarder
 router.delete('/suppression/maliste/:movieId', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const userRepository = appDataSource.getRepository(User);
@@ -225,6 +236,7 @@ router.delete('/suppression/maliste/:movieId', function (req, res) {
     });
 });
 
+//ajoute un film dans la base favoris
 router.post('/ajout/favoris/:movieId', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const userRepository = appDataSource.getRepository(User);
@@ -275,6 +287,7 @@ router.post('/ajout/favoris/:movieId', function (req, res) {
     });
 });
 
+//supprime un film de favoris
 router.delete('/suppression/favoris/:movieId', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const userRepository = appDataSource.getRepository(User);
@@ -340,6 +353,7 @@ router.delete('/:movieId', function (req, res) {
     });
 });
 
+//donne un film précis
 router.get('/:movieId', function (req, res) {
   appDataSource
     .getRepository(Movie)
