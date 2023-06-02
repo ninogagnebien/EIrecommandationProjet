@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import './MovieSearchBar.css';
+import React, { useState } from 'react'; //importe le langage et la fonction useState
+import './MovieSearchBar.css'; //importe la page qui gère le design
 
 function MovieSearchBar({ onSearch, onClear, movies }) {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(''); // définit la variable searchValue qui va se mettre à jour sans être perdue grâce à setsearchValue
 
   const handleSearchInputChange = (event) => {
-    const value = event.target.value;// renvoie ce qui est actuellement dans la barre de recherche
-    setSearchValue(value);
+    //à chaque évenement sur la barre de recherche causé par l'utilisateur, la fonction agit
+    const value = event.target.value; // renvoie ce qui est actuellement dans la barre de recherche
+    setSearchValue(value); //searchValue prend la valeur dans la barre de recherche (mise à jour)
     if (value === '') {
+      //si il n'y a rien
       onClear(); // Appeler la fonction pour effacer la liste des films
     } else {
       onSearch(value); // Appeler la fonction de recherche passée en tant que prop
@@ -23,6 +25,7 @@ function MovieSearchBar({ onSearch, onClear, movies }) {
     setFilteredMovies(filteredMovies);
   };
   const handleClear = () => {
+    //s'il n'y a rien dans la barre de recherche
     setFilteredMovies([]); // Effacer la liste des films
   };
 
