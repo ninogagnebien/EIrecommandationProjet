@@ -4,19 +4,24 @@
   justify-content: left;
   padding: 5px;
   font-size: calc(10px + 2vmin);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 .Header-container > :not(:last-child) {
   margin-right: 20px;
   margin-left: 20px;
-  font-family: sans-serif;
+  font-family: century;
 }
 
 .Link {
   font-weight: 700;
   color: white;
   text-decoration: none;
-  font-family: sans-serif;
+  font-family: century;
   margin-top: 20px;
 }
 
