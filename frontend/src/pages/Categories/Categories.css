@@ -3,6 +3,11 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.titre {
+  margin-top: 80px;
+  font-family: century;
+}
 .App {
   text-align: center;
 }

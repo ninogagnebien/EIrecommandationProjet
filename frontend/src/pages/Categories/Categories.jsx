@@ -46,8 +46,8 @@ function CategoryMovies() {
   }, []);
 
   return (
-    <div>
-      <h1>Voici les films du genre : {params.category}</h1>
+    <div className="titre">
+      <h1> Nos films du genre {params.category} :</h1>
 
       <div className="movies-container">
         {movies.map((movie, index) => (
