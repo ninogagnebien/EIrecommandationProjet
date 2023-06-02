@@ -20,8 +20,8 @@ function Favoris() {
   }, []);
 
   return (
-    <div>
-      <h1>Vos films favoris </h1>
+    <div className="titre">
+      <h1>Vos films favoris :</h1>
 
       <div className="movies-container">
         {movies.map((movie, index) => (

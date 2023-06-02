@@ -20,8 +20,8 @@ function Liste() {
   }, []);
 
   return (
-    <div>
-      <h1>Voici les films de votre liste </h1>
+    <div className="titre">
+      <h1>Les films de votre liste : </h1>
 
       <div className="movies-container">
         {movies.map((movie, index) => (
