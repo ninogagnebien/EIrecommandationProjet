@@ -24,7 +24,7 @@ const Header = () => {
       <Link className="Link" to="/preferences">
         Mes favoris
       </Link>
-      <button className="round-button">
+      <button className="userbutton">
         <FontAwesomeIcon icon={ faUser } />
       </button>
     </div>
