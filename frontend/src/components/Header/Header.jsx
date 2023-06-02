@@ -17,7 +17,7 @@ const Header = () => {
         Ma liste
       </Link>
       <Link className="Link" to="/categories">
-        Films par catégories
+        Films par genres
       </Link>
       <Link className="Link" to="/preferences">
         Mes favoris
