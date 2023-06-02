@@ -26,8 +26,25 @@ function FilmDetails() {
         console.error(error);
       });
   };
+
+  const verifFavori = () => {
+    axios
+      .get(`http://localhost:8000/movies/favoris`)
+      .then((response) => {
+        const favoris = response.data.user.favoris;
+        const isMovieFavorite = favoris.some(
+          (favori) => favori.id === params.id
+        );
+        setIsFavorite(isMovieFavorite);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
     fetchMovie();
+    verifFavori();
   }, []);
 
   const handleAddToFavorites = () => {
@@ -76,17 +93,18 @@ function FilmDetails() {
       <div className="container">
         <div className="boutoncoeur">
           <button
-            className={`round-button ${isClicked1 ? 'clicked' : ''}`}
+            className={`round-button ${
+              isClicked1 || isFavorite ? 'clicked' : ''
+            }`}
             onClick={() => {
               setIsClicked1(!isClicked1);
               handleAddToFavorites();
             }}
-            // onClick={handleAddToFavorites}
             style={{
               borderRadius: '50%',
               width: '60px',
               height: '60px',
-              backgroundColor: isClicked1 ? 'red' : 'gray',
+              backgroundColor: isClicked1 || isFavorite ? 'red' : 'gray',
               color: 'white',
               border: 'none',
               margin: '5px',
@@ -97,11 +115,14 @@ function FilmDetails() {
           >
             <FiHeart size={32} />
           </button>
+
           <p>Favoris</p>
         </div>
         <div className="boutonplus">
           <button
-            className={`round-button ${isClicked ? 'clicked' : ''}`}
+            className={`round-button ${
+              isClicked || isDansMaListe ? 'clicked' : ''
+            }`}
             onClick={() => {
               setIsClicked(!isClicked);
               handleAddToMaliste();
@@ -110,7 +131,7 @@ function FilmDetails() {
               borderRadius: '50%',
               width: '60px',
               height: '60px',
-              backgroundColor: isClicked ? 'red' : 'gray',
+              backgroundColor: isClicked || isDansMaListe ? 'green' : 'gray',
               color: 'white',
               border: 'none',
               margin: '5px',
