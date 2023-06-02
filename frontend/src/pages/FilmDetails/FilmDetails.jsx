@@ -68,9 +68,9 @@ function FilmDetails() {
 
         <div className="details">
           <h1>{movie?.title}</h1>
-          <p>Langue originale : {movie?.original_language}</p>
-          <p>Popularité : {movie?.popularity}</p>
-          <p className="resume">Résumé : {movie?.overview}</p>
+          <p><span className='petit-titre'>Langue originale : </span>{movie?.original_language}</p>
+          <p><span className='petit-titre'>Popularité : </span>{movie?.popularity}</p>
+          <p ><span className='petit-titre'>Résumé :</span> {movie?.overview}</p>
         </div>
       </div>
       <div className="container">
