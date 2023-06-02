@@ -27,7 +27,7 @@ def algo():
     #[(603692, 5), (385687, 2), (502356, 1)]
     rating = [10 for film in movies_rated]
     #ratings = [4, 6, 1, 2]
-    # print(movies_rated)
+    print(movies_rated)
 
     # On construit la matrice d'utilité (approche item/item, model based)
     # Exemple : {
@@ -44,9 +44,10 @@ def algo():
         if i >= 30:
             break
         movieId = movie[1]
+        score = movie[0]*100
         print(movieId)
         cur.execute(
-            "INSERT INTO user_recommandations_movie VALUES (1, ?)", (movieId,))
+            "INSERT INTO user_recommandations_movie (userId, movieId, score) VALUES (1, ?, ?)", (movieId, score,))
         con.commit()
         # on isert les 30 films le plus recommandés pour l'utilisateur dans la base relationnelle user_recommandations_movie
     return (recom)  # update la table

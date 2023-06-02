@@ -133,6 +133,7 @@ function FilmDetails() {
 
         <div className="details">
           <h1>{movie?.title}</h1>
+          {/* <h4>Recommandé à {movie?.r}</h4> */}
           <p><span className='petit-titre'>Langue originale : </span>{movie?.original_language}</p>
           <p><span className='petit-titre'>Popularité : </span>{movie?.popularity}</p>
           <p ><span className='petit-titre'>Résumé :</span> {movie?.overview}</p>
