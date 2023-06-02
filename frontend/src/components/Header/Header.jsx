@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import MovieMatch from './MovieMatch.png';
 
-
 const Header = () => {
   return (
     <div className="Header-container">
-      <img src={MovieMatch} className="logo"/>
+      <img src={MovieMatch} className="logo" />
       <Link className="Link" to="/">
         Home
       </Link>
@@ -25,7 +23,7 @@ const Header = () => {
         Mes favoris
       </Link>
       <button className="userbutton">
-        <FontAwesomeIcon icon={ faUser } />
+        <FontAwesomeIcon icon={faUser} />
       </button>
     </div>
   );

@@ -7,11 +7,9 @@ function Liste() {
   const [movies, setMovies] = useState([]);
   const fetchMovie = () => {
     axios
-      .get(
-        `http://localhost:8000/movies/maliste`
-      )
+      .get(`http://localhost:8000/movies/maliste`)
       .then((response) => {
-        setMovies(response.data.movie);
+        setMovies(response.data.user);
       })
       .catch((error) => {
         console.error(error);
