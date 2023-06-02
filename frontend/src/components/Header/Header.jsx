@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 import MovieMatch from './MovieMatch.png';
+
 
 const Header = () => {
   return (
@@ -18,6 +24,9 @@ const Header = () => {
       <Link className="Link" to="/preferences">
         Mes favoris
       </Link>
+      <button className="round-button">
+        <FontAwesomeIcon icon={ faUser } />
+      </button>
     </div>
   );
 };

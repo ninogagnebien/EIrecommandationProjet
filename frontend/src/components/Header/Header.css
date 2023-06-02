@@ -31,3 +31,19 @@
   width: 50px;
   height: 50px;
 }
+
+
+.round-button {
+  border-radius: 50%; /* Rend le bouton rond */
+  width: 40px; /* Ajuste la largeur du bouton en fonction de vos besoins */
+  height: 40px; /* Ajuste la hauteur du bouton en fonction de vos besoins */
+  text-align: center; /* Centre le contenu du bouton */
+  background-color: #22b3cd; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  position: absolute; /* Position absolue pour l'alignement à droite */
+  top: 18px; /* Ajuste la distance depuis le haut en fonction de vos besoins */
+  right: 20px; /* Aligne le bouton à droite */
+  font-size: 23px; /* Ajuste la taille de l'icône en pixels selon vos besoins */
+  line-height: 30px; /* Ajuste la hauteur de ligne pour centrer l'icône verticalement */
+  border: none;
+}
