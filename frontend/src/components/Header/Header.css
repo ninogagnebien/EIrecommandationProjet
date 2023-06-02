@@ -30,8 +30,8 @@
 .logo {
   width: 50px;
   height: 50px;
+  margin-top: 13px;
 }
-
 
 .round-button {
   border-radius: 50%; /* Rend le bouton rond */
