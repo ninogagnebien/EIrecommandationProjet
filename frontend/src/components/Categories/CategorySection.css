@@ -1,6 +1,7 @@
 .category {
   display: block;
-  margin-bottom: 10px; /* Facultatif : ajoute un espacement entre les éléments */
+  margin-bottom: 10px; 
+  margin-top:31px/* Facultatif : ajoute un espacement entre les éléments */
 }
 
 .categories {
@@ -16,10 +17,13 @@
   margin-top: 80px;
   margin-bottom: 80px;
   font-size: 40px;
+  font-weight: bold;
 }
 
 .category-link {
   color: white; /* Change la couleur du texte en blanc */
   text-decoration: none; /* Supprime le soulignement du lien */
   font-family: century;
+  font-size:26px;
+
 }

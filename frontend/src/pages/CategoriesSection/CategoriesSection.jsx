@@ -3,6 +3,7 @@ import CategorySection from '../../components/Categories/CategorySection';
 
 
 
+
 function CategoriesSection() {
 
   return (
