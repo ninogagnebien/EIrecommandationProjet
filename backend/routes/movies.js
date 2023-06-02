@@ -78,6 +78,20 @@ router.get('/favoris', function (req, res) {
     });
 });
 
+router.get('/recommandations', function (req, res) {
+  appDataSource
+    .getRepository(User)
+    .findOne({
+      where: { id: 1 },
+      relations: { recommandations: true },
+      take: 20,
+    })
+    .then(function (user) {
+      res.json({ user });
+    });
+});
+
+
 router.get('/maliste', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -86,22 +100,6 @@ router.get('/maliste', function (req, res) {
       res.json({ user });
     });
 });
-
-// router.get('/categories/:genreId', async function (req, res) {
-//   try {
-//     appDataSource.getRepository(Movie);
-//     const movies = await movieRepository
-//       .createQueryBuilder('movie')
-//       .leftJoinAndSelect('movie.genres', 'genre')
-//       .where('genre.id = :genreId', { genreId: req.params.genreId })
-//       .getMany();
-
-//     res.json({ movies });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
@@ -124,6 +122,102 @@ router.post('/new', function (req, res) {
       } else {
         res.status(500).json({ message: 'Error while creating the movie' });
       }
+    });
+});
+
+router.post('/ajout/liste/:movieId', function (req, res) {
+  const movieRepository = appDataSource.getRepository(Movie);
+  const userRepository = appDataSource.getRepository(User);
+
+  const movieId = req.params.movieId; //ID du film à ajouter
+  const userId = 1; // ID de l'utilisateur
+
+  // Vérifier si le film existe dans la base de données
+  movieRepository
+    .findOne({ where : {id: movieId }})
+    .then(function (movie) {
+      if (movie) {
+        // Récupérer l'utilisateur
+        userRepository
+          .findOne({ where : {id: userId }, relations: { liste: true }})
+          .then(function (user) {
+            if (user) {
+              // Ajouter le film à la liste des favoris de l'utilisateur
+              user.liste.push(movie);
+
+              // Sauvegarder les modifications
+              userRepository
+                .save(user)
+                .then(function () {
+                  res.status(201).json({ message: 'Film bien ajouté à ma liste' });
+                })
+                .catch(function (error) {
+                  console.error(error);
+                  res.status(500).json({ message: 'Error while saving user' });
+                });
+            } else {
+              res.status(404).json({ message: 'User not found' });
+            }
+          })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error while finding user' });
+          });
+      } else {
+        res.status(404).json({ message: 'Movie not found' });
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error while finding movie' });
+    });
+});
+
+router.post('/ajout/favoris/:movieId', function (req, res) {
+  const movieRepository = appDataSource.getRepository(Movie);
+  const userRepository = appDataSource.getRepository(User);
+
+  const movieId = req.params.movieId; //ID du film à ajouter
+  const userId = 1; // ID de l'utilisateur
+
+  // Vérifier si le film existe dans la base de données
+  movieRepository
+    .findOne({ where : {id: movieId }})
+    .then(function (movie) {
+      if (movie) {
+        // Récupérer l'utilisateur
+        userRepository
+          .findOne({ where : {id: userId }, relations: { favoris: true }})
+          .then(function (user) {
+            if (user) {
+              // Ajouter le film à la liste des favoris de l'utilisateur
+              user.favoris.push(movie);
+
+              // Sauvegarder les modifications
+              userRepository
+                .save(user)
+                .then(function () {
+                  res.status(201).json({ message: 'Movie added to favorites successfully' });
+                })
+                .catch(function (error) {
+                  console.error(error);
+                  res.status(500).json({ message: 'Error while saving user' });
+                });
+            } else {
+              res.status(404).json({ message: 'User not found' });
+            }
+          })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error while finding user' });
+          });
+      } else {
+        res.status(404).json({ message: 'Movie not found' });
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error while finding movie' });
     });
 });
 

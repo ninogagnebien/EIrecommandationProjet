@@ -8,8 +8,7 @@ import useFetchMovies from './useFetchMovies';
 import CategorySection from '../../components/Categories/CategorySection';
 import Slider from '../../components/Slider/Slider';
 import MovieSearchBar from '../../components/Recherche/MovieSearchBar';
-import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/pages/Home/MovieMatch.png';
-
+import MovieMatch from './MovieMatch.png';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
@@ -17,6 +16,7 @@ function Home() {
   const [top10, setTop10] = useState([]);
   const [favoris, setFavoris] = useState([]);
   const [maliste, setMaliste] = useState([]);
+  const [mesrecommandations, setMesrecommandations] = useState([]);
   const moviesNames = movies.map((movie) => movie.title);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -41,6 +41,7 @@ function Home() {
         console.error(error);
       });
   }, []);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/movies/favoris`)
@@ -51,12 +52,25 @@ function Home() {
         console.error(error);
       });
   }, []);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/movies/maliste`)
       .then((response) => {
         setMaliste(response.data.user.liste);
         console.log(response.data.user.liste);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/movies/recommandations`)
+      .then((response) => {
+        setMesrecommandations(response.data.user.recommandations);
+        console.log(response.data.user.recommandations);
       })
       .catch((error) => {
         console.error(error);
@@ -93,14 +107,16 @@ function Home() {
         {/* <div><img src="./movie.png"/></div> */}
         {/* </p> */}
 
-        <img src={MovieMatch} className="logo2"/>
-        <div className="titresection">Mes films favoris</div>
-        <Slider recommendations={favoris} />
-        <div className="titresection">Ma liste de films à regarder</div>
+        <img src={MovieMatch} className="logo2" />
+        <div className="titresection">Vos recommandations</div>
+        <Slider recommendations={mesrecommandations} />
+        <div className="titresection">Votre liste de films à regarder</div>
         <Slider recommendations={maliste} />
         {/* <Slider recommendations={maliste} /> */}
         <div className="titresection">Top 10</div>
         <Slider recommendations={top10} />
+        <div className="titresection">Vos films favoris</div>
+        <Slider recommendations={favoris} />
         <CategorySection />
       </div>
     </div>

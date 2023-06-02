@@ -2,7 +2,7 @@
 import numpy as np
 import sqlite3
 con = sqlite3.connect(
-    "C:/Users/victo/EIrecommandationProjet/backend/database.sqlite3")
+    "C:/Users/ninog/EIrecommandation/centrale-ei-web/backend/database.sqlite3")
 
 cur = con.cursor()
 con.commit()
@@ -39,10 +39,20 @@ def algo():
 
     matrice_films, dico_film_id = matrice_elements(all_movies)
     vecteur = vecteur_user(movies_rated, matrice_films, dico_film_id)
-    recom = recommendation(vecteur, matrice_films,all_movies)
-    return (recom)#update la table
+    recom = recommendation(vecteur, matrice_films, all_movies)
+    for i, movie in enumerate(recom):
+        if i >= 30:
+            break
+        movieId = movie[1]
+        print(movieId)
+        cur.execute(
+            "INSERT INTO user_recommandations_movie VALUES (1, ?)", (movieId,))
+        con.commit()
+        # on isert les 30 films le plus recommandés pour l'utilisateur dans la base relationnelle user_recommandations_movie
+    return (recom)  # update la table
 
 # Matrice associée aux films, leurs caractéristiques : film en ligne, caractéristiques en colonne
+
 
 def matrice_elements(all_movies):
     n = len(all_movies)
@@ -58,6 +68,7 @@ def matrice_elements(all_movies):
     return (res, dico_film_id)
 
 # Vecteur associée à l'utilisateur : avec des notes (ou des films vus), mêmes colonnes que précédemment
+
 
 def vecteur_user(notes_user, matrice_element, dico_film_id):
     # note user qui contient la note de l'utilisateur clé i rang du film dans all_movies
@@ -78,7 +89,8 @@ def vecteur_user(notes_user, matrice_element, dico_film_id):
 
 # Calcul de la recommendation :
 
-def recommendation(vecteur_user, matrice_element,all_movies):
+
+def recommendation(vecteur_user, matrice_element, all_movies):
     n = len(all_movies)
     x = vecteur_user
     res = np.zeros(n)
@@ -95,3 +107,6 @@ def recommendation(vecteur_user, matrice_element,all_movies):
         recom = [(res[i], all_movies[i][0]) for i in range(n)]
     recom.sort(reverse=True)
     return (recom)
+
+
+algo()
