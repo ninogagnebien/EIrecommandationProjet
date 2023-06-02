@@ -5,7 +5,7 @@ function MovieSearchBar({ onSearch, onClear, movies }) {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchInputChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.value;// renvoie ce qui est actuellement dans la barre de recherche
     setSearchValue(value);
     if (value === '') {
       onClear(); // Appeler la fonction pour effacer la liste des films
