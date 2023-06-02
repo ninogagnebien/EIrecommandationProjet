@@ -1,40 +1,42 @@
 import './Liste.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import AddUserForm from '../../components/AddUserForm/AddUserForm';
-import UsersTable from '../../components/UsersTable/UsersTable';
+import { Link } from 'react-router-dom';
 
 function Liste() {
-  const [users, setUsers] = useState([]);
-  const [usersLoadingError, setUsersLoadingError] = useState(null);
-
-  const fetchUsers = () => {
-    setUsersLoadingError(null);
-
+  const [movies, setMovies] = useState([]);
+  const fetchMovie = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+      .get(
+        `http://localhost:8000/movies/maliste`
+      )
       .then((response) => {
-        setUsers(response.data.users);
+        setMovies(response.data.movie);
       })
       .catch((error) => {
-        setUsersLoadingError('An error occured while fetching users.');
         console.error(error);
       });
   };
-
-  // fetch users on component mount
   useEffect(() => {
-    fetchUsers();
+    fetchMovie();
   }, []);
 
   return (
-    <div className="Users-container">
-      <h1>This page displays the users</h1>
-      <AddUserForm onSuccessfulUserCreation={fetchUsers} />
-      <UsersTable users={users} onSuccessfulUserDeletion={fetchUsers} />
-      {usersLoadingError !== null && (
-        <div className="users-loading-error">{usersLoadingError}</div>
-      )}
+    <div>
+      <h1>Voici les films de votre liste </h1>
+
+      <div className="movies-container">
+        {movies.map((movie, index) => (
+          <div key={movie.id} className="movie-item">
+            <Link to={`/movie/${movie.id}`} className="resultatsRecherche">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                className="movie-image"
+              />
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

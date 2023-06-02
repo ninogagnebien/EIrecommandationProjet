@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 import MovieMatch from 'C:/Users/victo/EIrecommandationProjet/frontend/src/components/Header/MovieMatch.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   return (
@@ -18,6 +20,9 @@ const Header = () => {
       <Link className="Link" to="/preferences">
         Mes favoris
       </Link>
+      <button className="round-button">
+        <FontAwesomeIcon icon={ faUser } />
+      </button>
     </div>
   );
 };
