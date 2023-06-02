@@ -11,8 +11,8 @@ function FilmDetails() {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [rating, setRating] = useState(0);
-  const [isClicked1, setIsClicked1] = useState(false); //composant favoris
-  const [isClicked, setIsClicked] = useState(false); //composant favoris
+  // const [isClicked1, setIsClicked1] = useState(false); //composant favoris
+  // const [isClicked, setIsClicked] = useState(false); //composant favoris
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDansMaListe, setIsDansMaListe] = useState(false);
 
@@ -33,9 +33,24 @@ function FilmDetails() {
       .then((response) => {
         const favoris = response.data.user.favoris;
         const isMovieFavorite = favoris.some(
-          (favori) => favori.id === params.id
+          (favori) => favori.id === parseInt(params.id)
         );
         setIsFavorite(isMovieFavorite);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const verifDansMaListe = () => {
+    axios
+      .get(`http://localhost:8000/movies/maliste`)
+      .then((response) => {
+        const liste = response.data.user.liste;
+        const isMovieDansMaListe = liste.some(
+          (movieDansListe) => movieDansListe.id === parseInt(params.id)
+        );
+        setIsDansMaListe(isMovieDansMaListe);
       })
       .catch((error) => {
         console.error(error);
@@ -45,6 +60,7 @@ function FilmDetails() {
   useEffect(() => {
     fetchMovie();
     verifFavori();
+    verifDansMaListe();
   }, []);
 
   const handleAddToFavorites = () => {
@@ -55,6 +71,21 @@ function FilmDetails() {
       .post(`http://localhost:8000/movies/ajout/favoris/${movieId}`)
       .then((response) => {
         console.log(response.data);
+        setIsFavorite(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleRemoveFromFavorites = () => {
+    const movieId = params.id; // ID du film à supprimer des favoris
+
+    axios
+      .delete(`http://localhost:8000/movies/suppression/favoris/${movieId}`)
+      .then((response) => {
+        console.log(response.data);
+        setIsFavorite(false); // Met à jour l'état pour indiquer que le film n'est plus dans les favoris
       })
       .catch((error) => {
         console.error(error);
@@ -66,14 +97,31 @@ function FilmDetails() {
     const userId = 1; // ID de l'utilisateur
 
     axios
-      .post(`http://localhost:8000/movies/ajout/liste/${movieId}`)
+      .post(`http://localhost:8000/movies/ajout/maliste/${movieId}`)
       .then((response) => {
         console.log(response.data);
+        setIsDansMaListe(true);
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  const handleRemoveFromMaliste = () => {
+    const movieId = params.id; // ID du film à supprimer des favoris
+
+    axios
+      .delete(`http://localhost:8000/movies/suppression/maliste/${movieId}`)
+      .then((response) => {
+        console.log(response.data);
+        setIsDansMaListe(false); // Met à jour l'état pour indiquer que le film n'est plus dans les favoris
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  console.log(isFavorite);
 
   return (
     <div className="App">
@@ -93,18 +141,19 @@ function FilmDetails() {
       <div className="container">
         <div className="boutoncoeur">
           <button
-            className={`round-button ${
-              isClicked1 || isFavorite ? 'clicked' : ''
-            }`}
+            className={`round-button ${isFavorite ? 'clicked' : ''}`}
             onClick={() => {
-              setIsClicked1(!isClicked1);
-              handleAddToFavorites();
+              if (isFavorite) {
+                handleRemoveFromFavorites(); // Supprime le film des favoris s'il est déjà présent
+              } else {
+                handleAddToFavorites(); // Ajoute le film aux favoris s'il n'est pas présent
+              }
             }}
             style={{
               borderRadius: '50%',
               width: '60px',
               height: '60px',
-              backgroundColor: isClicked1 || isFavorite ? 'red' : 'gray',
+              backgroundColor: isFavorite ? 'red' : 'gray',
               color: 'white',
               border: 'none',
               margin: '5px',
@@ -120,18 +169,19 @@ function FilmDetails() {
         </div>
         <div className="boutonplus">
           <button
-            className={`round-button ${
-              isClicked || isDansMaListe ? 'clicked' : ''
-            }`}
+            className={`round-button ${isDansMaListe ? 'clicked' : ''}`}
             onClick={() => {
-              setIsClicked(!isClicked);
-              handleAddToMaliste();
+              if (isDansMaListe) {
+                handleRemoveFromMaliste(); // Supprime le film des favoris s'il est déjà présent
+              } else {
+                handleAddToMaliste(); // Ajoute le film aux favoris s'il n'est pas présent
+              }
             }}
             style={{
               borderRadius: '50%',
               width: '60px',
               height: '60px',
-              backgroundColor: isClicked || isDansMaListe ? 'green' : 'gray',
+              backgroundColor: isDansMaListe ? 'green' : 'gray',
               color: 'white',
               border: 'none',
               margin: '5px',

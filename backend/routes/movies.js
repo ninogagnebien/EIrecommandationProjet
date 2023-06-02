@@ -91,7 +91,6 @@ router.get('/recommandations', function (req, res) {
     });
 });
 
-
 router.get('/maliste', function (req, res) {
   appDataSource
     .getRepository(User)
@@ -125,7 +124,7 @@ router.post('/new', function (req, res) {
     });
 });
 
-router.post('/ajout/liste/:movieId', function (req, res) {
+router.post('/ajout/maliste/:movieId', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const userRepository = appDataSource.getRepository(User);
 
@@ -134,12 +133,12 @@ router.post('/ajout/liste/:movieId', function (req, res) {
 
   // Vérifier si le film existe dans la base de données
   movieRepository
-    .findOne({ where : {id: movieId }})
+    .findOne({ where: { id: movieId } })
     .then(function (movie) {
       if (movie) {
         // Récupérer l'utilisateur
         userRepository
-          .findOne({ where : {id: userId }, relations: { liste: true }})
+          .findOne({ where: { id: userId }, relations: { liste: true } })
           .then(function (user) {
             if (user) {
               // Ajouter le film à la liste des favoris de l'utilisateur
@@ -149,7 +148,60 @@ router.post('/ajout/liste/:movieId', function (req, res) {
               userRepository
                 .save(user)
                 .then(function () {
-                  res.status(201).json({ message: 'Film bien ajouté à ma liste' });
+                  res
+                    .status(201)
+                    .json({ message: 'Film bien ajouté à ma liste' });
+                })
+                .catch(function (error) {
+                  console.error(error);
+                  res.status(500).json({ message: 'Error while saving user' });
+                });
+            } else {
+              res.status(404).json({ message: 'User not found' });
+            }
+          })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error while finding user' });
+          });
+      } else {
+        res.status(404).json({ message: 'Movie not found' });
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error while finding movie' });
+    });
+});
+
+router.delete('/suppression/maliste/:movieId', function (req, res) {
+  const movieRepository = appDataSource.getRepository(Movie);
+  const userRepository = appDataSource.getRepository(User);
+
+  const movieId = req.params.movieId; // ID du film à supprimer
+  const userId = 1; // ID de l'utilisateur
+
+  // Vérifier si le film existe dans la base de données
+  movieRepository
+    .findOne({ where: { id: movieId } })
+    .then(function (movie) {
+      if (movie) {
+        // Récupérer l'utilisateur
+        userRepository
+          .findOne({ where: { id: userId }, relations: { liste: true } })
+          .then(function (user) {
+            if (user) {
+              // Supprimer le film de la liste de l'utilisateur
+              const liste = user.liste.filter((film) => film.id !== movie.id);
+              user.liste = liste;
+
+              // Sauvegarder les modifications
+              userRepository
+                .save(user)
+                .then(function () {
+                  res.status(200).json({
+                    message: 'Film removed from user list successfully',
+                  });
                 })
                 .catch(function (error) {
                   console.error(error);
@@ -182,12 +234,12 @@ router.post('/ajout/favoris/:movieId', function (req, res) {
 
   // Vérifier si le film existe dans la base de données
   movieRepository
-    .findOne({ where : {id: movieId }})
+    .findOne({ where: { id: movieId } })
     .then(function (movie) {
       if (movie) {
         // Récupérer l'utilisateur
         userRepository
-          .findOne({ where : {id: userId }, relations: { favoris: true }})
+          .findOne({ where: { id: userId }, relations: { favoris: true } })
           .then(function (user) {
             if (user) {
               // Ajouter le film à la liste des favoris de l'utilisateur
@@ -197,7 +249,62 @@ router.post('/ajout/favoris/:movieId', function (req, res) {
               userRepository
                 .save(user)
                 .then(function () {
-                  res.status(201).json({ message: 'Movie added to favorites successfully' });
+                  res
+                    .status(201)
+                    .json({ message: 'Movie added to favorites successfully' });
+                })
+                .catch(function (error) {
+                  console.error(error);
+                  res.status(500).json({ message: 'Error while saving user' });
+                });
+            } else {
+              res.status(404).json({ message: 'User not found' });
+            }
+          })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error while finding user' });
+          });
+      } else {
+        res.status(404).json({ message: 'Movie not found' });
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error while finding movie' });
+    });
+});
+
+router.delete('/suppression/favoris/:movieId', function (req, res) {
+  const movieRepository = appDataSource.getRepository(Movie);
+  const userRepository = appDataSource.getRepository(User);
+
+  const movieId = req.params.movieId; // ID du film à supprimer
+  const userId = 1; // ID de l'utilisateur
+
+  // Vérifier si le film existe dans la base de données
+  movieRepository
+    .findOne({ where: { id: movieId } })
+    .then(function (movie) {
+      if (movie) {
+        // Récupérer l'utilisateur
+        userRepository
+          .findOne({ where: { id: userId }, relations: { favoris: true } })
+          .then(function (user) {
+            if (user) {
+              // Supprimer le film de la liste des favoris de l'utilisateur
+              const favoris = user.favoris.filter(
+                (favori) => favori.id !== movie.id
+              );
+              user.favoris = favoris;
+
+              // Sauvegarder les modifications
+              userRepository
+                .save(user)
+                .then(function () {
+                  res.status(200).json({
+                    message: 'Movie removed from favorites successfully',
+                  });
                 })
                 .catch(function (error) {
                   console.error(error);
