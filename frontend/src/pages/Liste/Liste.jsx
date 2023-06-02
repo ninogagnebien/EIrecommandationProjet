@@ -9,7 +9,7 @@ function Liste() {
     axios
       .get(`http://localhost:8000/movies/maliste`)
       .then((response) => {
-        setMovies(response.data.user);
+        setMovies(response.data.user.liste);
       })
       .catch((error) => {
         console.error(error);
