@@ -3,7 +3,7 @@ import './Categories.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Movie from '../../components/Movie/Movie';
+
 
 function CategoryMovies() {
   const params = useParams();
