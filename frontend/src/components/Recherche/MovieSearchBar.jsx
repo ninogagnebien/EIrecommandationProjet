@@ -3,7 +3,6 @@ import './MovieSearchBar.css'; //importe la page qui gère le design
 
 function MovieSearchBar({ onSearch, onClear, movies }) {
   const [searchValue, setSearchValue] = useState(''); // définit la variable searchValue qui va se mettre à jour sans être perdue grâce à setsearchValue
-  //elle est initialisée au vide
 
   const handleSearchInputChange = (event) => {
     //à chaque évenement sur la barre de recherche causé par l'utilisateur, la fonction agit
